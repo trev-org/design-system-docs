@@ -1,0 +1,134 @@
+---
+title: "Avatar"
+description: "Avatars represent a person or an organization with an image, initials, or an icon."
+icon: "circle-user"
+tag: "New"
+---
+
+<div className="lm-preview">
+  <span className="lm-avatar lm-avatar--lg lm-avatar--photo">AK<span className="lm-avatar-status" /></span>
+  <span className="lm-avatar lm-avatar--lg">MR</span>
+  <span className="lm-avatar lm-avatar--lg lm-avatar--neutral">JL<span className="lm-avatar-status is-away" /></span>
+  <span className="lm-avatar lm-avatar--lg lm-avatar--square lm-avatar--photo2">AC</span>
+  <div className="lm-avatar-group">
+    <span className="lm-avatar lm-avatar--photo">AK</span>
+    <span className="lm-avatar lm-avatar--photo2">MR</span>
+    <span className="lm-avatar">JL</span>
+    <span className="lm-avatar lm-avatar--neutral">+4</span>
+  </div>
+</div>
+
+## Anatomy
+
+1. **Container**: square with radius `radius.full` (people) or `radius.lg` (organizations). Clips content.
+2. **Content**: an image (`object-fit: cover`), or initials (fill `color.bg.brand-subtle`, text `color.text.brand`), or a fallback person icon (fill `color.bg.muted`, icon `color.text.secondary`).
+3. **Status indicator** (optional): circle at 25% of the avatar size, bottom-right, with a 2px `color.bg.surface` ring. Online `green.500`, away `amber.500`, busy `red.500`, offline `neutral.400`.
+
+## Sizes
+
+<div className="lm-preview">
+  <span className="lm-avatar lm-avatar--xs">XS</span>
+  <span className="lm-avatar lm-avatar--sm">SM</span>
+  <span className="lm-avatar">MD</span>
+  <span className="lm-avatar lm-avatar--lg">LG</span>
+  <span className="lm-avatar lm-avatar--xl">XL</span>
+</div>
+
+| Size | Dimension | Initials style | Use for |
+|---|---|---|---|
+| `xs` | 24px | `label.sm` at 10px | Inline mentions, dense tables |
+| `sm` | 32px | `label.sm` | Comments, lists |
+| `md` | 40px | `label.md` | Default: navigation, cards |
+| `lg` | 48px | `label.lg` | Profile headers in panels |
+| `xl` | 64px | `heading.md` | Profile pages |
+
+## Variants
+
+| Variant | When |
+|---|---|
+| Image | A user-uploaded photo or logo is available. |
+| Initials | No image. Use the first letter of the first and last name. |
+| Icon | No name is known, such as a pending invite. |
+| Square shape | Organizations, workspaces, and bots, to distinguish them from people. |
+
+## States
+
+| State | Treatment |
+|---|---|
+| Loading | Fill `color.bg.muted` skeleton with a shimmer (disabled under reduced motion) |
+| Image error | Falls back to initials, then to the icon |
+| Interactive hover | When wrapped in a button: 2px `color.border.default` ring |
+| Focus | 2px `color.border.focus` outline, 2px offset (interactive only) |
+
+## Props
+
+<ResponseField name="src" type="string">
+  Image URL. Falls back to initials if it fails to load.
+</ResponseField>
+
+<ResponseField name="name" type="string" required>
+  The person's or organization's name. Used for initials and as the accessible name.
+</ResponseField>
+
+<ResponseField name="size" type='"xs" | "sm" | "md" | "lg" | "xl"' default="md">
+  Avatar dimension.
+</ResponseField>
+
+<ResponseField name="shape" type='"circle" | "square"' default="circle">
+  Use `square` for organizations.
+</ResponseField>
+
+<ResponseField name="status" type='"online" | "away" | "busy" | "offline"'>
+  Shows a status indicator and appends the status to the accessible name.
+</ResponseField>
+
+<ResponseField name="AvatarGroup.max" type="number" default="4">
+  Maximum avatars shown in an `AvatarGroup` before collapsing the rest into a "+N" avatar.
+</ResponseField>
+
+## Examples
+
+<CodeGroup>
+```tsx Single
+import { Avatar } from "@lumen/react";
+
+<Avatar name="Ada Kowalski" src="/people/ada.jpg" status="online" />
+```
+```tsx Group
+import { Avatar, AvatarGroup } from "@lumen/react";
+
+<AvatarGroup max={3} size="sm">
+  {team.map((m) => (
+    <Avatar key={m.id} name={m.name} src={m.avatarUrl} />
+  ))}
+</AvatarGroup>
+```
+</CodeGroup>
+
+## Accessibility
+
+- Image avatars render `<img alt={name}>`; initials render with `role="img"` and `aria-label={name}`.
+- If the name is already visible next to the avatar, the avatar is marked decorative (`alt=""`) to avoid repetition.
+- Status is announced as part of the name ("Ada Kowalski, online"); color is not the only indicator in critical contexts, so pair it with text in presence lists.
+- The "+N" avatar in a group has an accessible name like "4 more people" and opens the full list on click.
+
+## Usage
+
+<Columns cols={2}>
+  <Check>
+    **Do** use the same size for every avatar in a list.
+  </Check>
+  <Warning>
+    **Don't** use avatars for decoration when the person isn't relevant to the task.
+  </Warning>
+  <Check>
+    **Do** use square avatars for organizations and bots.
+  </Check>
+  <Warning>
+    **Don't** show more than five avatars in a group.
+  </Warning>
+</Columns>
+
+<Info>
+  **Figma:** component set `Avatar` with properties `Type` (Image, Initials, Icon), `Size` (Xs, Sm, Md, Lg, Xl), `Shape` (Circle, Square), and `Status` (None, Online, Away, Busy, Offline).
+</Info>

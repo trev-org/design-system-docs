@@ -1,0 +1,89 @@
+---
+title: "Installation"
+description: "Add Lumen to a React project in a few minutes."
+icon: "download"
+---
+
+Lumen ships as three packages. Most apps need the first two.
+
+| Package | What it contains |
+|---|---|
+| `@lumen/react` | Accessible React components (React 18+, server-component friendly). |
+| `@lumen/tokens` | Generated CSS variables (`lumen.css`) and a resolved JSON token map. |
+| `@lumen/icons` | 400+ 16px and 20px outline icons used by the components. Optional. |
+
+<Steps>
+  <Step title="Install the packages">
+    <CodeGroup>
+    ```bash npm
+    npm install @lumen/react @lumen/tokens
+    ```
+    ```bash pnpm
+    pnpm add @lumen/react @lumen/tokens
+    ```
+    ```bash yarn
+    yarn add @lumen/react @lumen/tokens
+    ```
+    </CodeGroup>
+  </Step>
+  <Step title="Load the tokens and fonts">
+    Import the token stylesheet once, at the root of your app. Lumen uses **Inter** for UI text, **Plus Jakarta Sans** for headings, and **JetBrains Mono** for code.
+
+    ```tsx app/layout.tsx
+    import "@lumen/tokens/lumen.css";
+    import "@lumen/react/fonts.css"; // optional: self-hosted Inter, Plus Jakarta Sans, JetBrains Mono
+    ```
+  </Step>
+  <Step title="Wrap your app in LumenProvider">
+    `LumenProvider` sets `data-theme` on the root element, provides the portal container used by `Modal` and `Tooltip`, and respects `prefers-reduced-motion`.
+
+    ```tsx app/layout.tsx
+    import { LumenProvider } from "@lumen/react";
+
+    export default function RootLayout({ children }: { children: React.ReactNode }) {
+      return (
+        <html lang="en">
+          <body>
+            <LumenProvider theme="system">{children}</LumenProvider>
+          </body>
+        </html>
+      );
+    }
+    ```
+  </Step>
+  <Step title="Use a component">
+    ```tsx app/page.tsx
+    import { Button, Card } from "@lumen/react";
+
+    export default function Page() {
+      return (
+        <Card title="Welcome to Lumen" description="Your workspace is ready.">
+          <Button variant="primary">Get started</Button>
+        </Card>
+      );
+    }
+    ```
+  </Step>
+</Steps>
+
+## Framework notes
+
+<AccordionGroup>
+  <Accordion title="Next.js (App Router)" icon="triangle">
+    All interactive components are marked `"use client"` internally, so you can import them from server components. Put `LumenProvider` in `app/layout.tsx`.
+  </Accordion>
+  <Accordion title="Vite" icon="zap">
+    Import `@lumen/tokens/lumen.css` in `src/main.tsx` before your own styles so your overrides win.
+  </Accordion>
+  <Accordion title="Without React" icon="code">
+    The tokens are framework agnostic. Import `lumen.css` and use the `--lumen-*` variables directly, or read `lumen.tokens.json` from any build tool. See [Theming](/get-started/theming).
+  </Accordion>
+</AccordionGroup>
+
+## Browser support
+
+Lumen supports the last two versions of Chrome, Edge, Firefox, and Safari. The modal scrim uses `color-mix()`, which is available in all supported browsers.
+
+<Check>
+  You're set up. Next, learn how to [theme Lumen with tokens](/get-started/theming).
+</Check>

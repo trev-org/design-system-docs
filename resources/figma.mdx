@@ -1,0 +1,125 @@
+---
+title: "Figma kit"
+description: "Import Lumen's tokens into Figma and build the component library from the spec, by hand or with Claude."
+icon: "pen-tool"
+---
+
+The `figma/` folder in this repository contains everything needed to build the Lumen Figma library: design tokens in the W3C DTCG format, Tokens Studio theme metadata, and a layer-by-layer component spec.
+
+<Tree>
+  <Tree.Folder name="figma" defaultOpen>
+    <Tree.File name="README.md" />
+    <Tree.File name="component-spec.md" />
+    <Tree.Folder name="tokens" defaultOpen>
+      <Tree.File name="$metadata.json" />
+      <Tree.File name="$themes.json" />
+      <Tree.File name="primitives.json" />
+      <Tree.Folder name="semantic" defaultOpen>
+        <Tree.File name="light.json" />
+        <Tree.File name="dark.json" />
+      </Tree.Folder>
+      <Tree.File name="typography.json" />
+      <Tree.File name="spacing.json" />
+      <Tree.File name="radius.json" />
+      <Tree.File name="effects.json" />
+      <Tree.File name="motion.json" />
+      <Tree.File name="breakpoints.json" />
+    </Tree.Folder>
+  </Tree.Folder>
+</Tree>
+
+## What maps to what
+
+| Token file | Figma variable collection | Modes | Notes |
+|---|---|---|---|
+| `primitives.json` | **Primitives** | Default | 68 colors: base, brand, neutral, green, amber, red, blue. Hide from publishing. |
+| `semantic/light.json` + `semantic/dark.json` | **Semantic** | Light, Dark | 39 color aliases to Primitives. The only colors designers should pick. |
+| `typography.json` | **Typography** | Default | Families, weights, sizes, line heights, letter spacing (number/string variables) plus 15 **text styles**. |
+| `spacing.json` | **Spacing** | Default | `space.0` to `space.24`. Scope to gap and padding. |
+| `radius.json` | **Radius** | Default | Radii and border widths. Scope to corner radius and stroke. |
+| `effects.json` | Effect styles | — | Shadows become **effect styles** (`shadow/sm`, …); z-index is code only. |
+| `motion.json`, `breakpoints.json` | — | — | Code only. Documented for prototyping. |
+
+## Option A: Tokens Studio (recommended)
+
+[Tokens Studio for Figma](https://tokens.studio) reads these files natively, including `$themes.json` for the Light and Dark modes.
+
+<Steps>
+  <Step title="Install the plugin">
+    In Figma, open **Plugins → Find more plugins** and install **Tokens Studio for Figma**.
+  </Step>
+  <Step title="Connect the repository">
+    In the plugin, go to **Settings → Sync providers → GitHub** (or GitLab), point it at this repository, set the branch to `main` and the file path to `figma/tokens`. Choose **Multiple files** and the **W3C DTCG** token format.
+
+    No Git access? Use **Tools → Load from file / folder** and select the `figma/tokens` folder.
+  </Step>
+  <Step title="Export to variables and styles">
+    Open **Styles & Variables → Export styles & variables**. Select the **Light** and **Dark** themes, enable **Color, Number, String** variables and **Typography** and **Shadow** styles, then export. Tokens Studio creates a collection per shared token set and a themed collection named after the theme group (**Mode**) with Light and Dark modes; rename it to **Semantic**. Exporting themes as modes requires Tokens Studio Pro.
+  </Step>
+</Steps>
+
+## Option B: Native Figma variable import
+
+Figma can import DTCG JSON directly into a variable collection, one file per mode.
+
+<Steps>
+  <Step title="Create the Primitives collection">
+    Open the **Variables** panel, create a collection named `Primitives`, and import `primitives.json`.
+  </Step>
+  <Step title="Create the Semantic collection">
+    Create a collection named `Semantic` with two modes, `Light` and `Dark`. Import `semantic/light.json` into Light and `semantic/dark.json` into Dark. Aliases such as `{color.brand.600}` resolve to the Primitives collection.
+  </Step>
+  <Step title="Add the remaining collections">
+    Import `spacing.json` into `Spacing` and `radius.json` into `Radius`. Create text styles and effect styles from `typography.json` and `effects.json` following [the spec](#component-spec).
+  </Step>
+</Steps>
+
+<Warning>
+  Native import handles color, number, and dimension tokens. Composite `typography` and `shadow` tokens become text and effect styles, which you create from the spec (or with Tokens Studio, or Claude, below).
+</Warning>
+
+## Component spec
+
+`figma/component-spec.md` describes each component as a Figma component set:
+
+- **Page structure** for the file: Cover, Foundations, Components (one section per component), Patterns, and Archive.
+- **Variant properties and values** that mirror the React props, for example `Variant = Primary | Secondary | Ghost | Danger`, `Size = Sm | Md | Lg`, `State = Default | Hover | Focus | Pressed | Disabled | Loading`.
+- **Auto layout** for every layer: direction, padding, gap, alignment, and sizing (hug or fill), all bound to Spacing variables.
+- **Token bindings per layer**: fills, strokes, radii, and effects bound to Semantic variables and styles.
+- **Text styles** by name, such as `label/md` and `heading/sm`.
+
+## Build the library with Claude
+
+Claude can't reach Figma from this repository, but in the **Claude desktop app** or on **claude.ai** with a Figma connector enabled, Claude can create variables, styles, and components in your file directly.
+
+<Steps>
+  <Step title="Open a Figma file">
+    Create an empty Figma design file named **Lumen Design System** and copy its link.
+  </Step>
+  <Step title="Connect Figma to Claude">
+    In the Claude desktop app or claude.ai, enable the Figma connector (Settings → Connectors) and authorize it for your team.
+  </Step>
+  <Step title="Give Claude the source files">
+    Attach `figma/component-spec.md` and the `figma/tokens` folder, or share the repository link if Claude has GitHub access.
+  </Step>
+  <Step title="Prompt">
+    ```text Prompt
+    Build the Lumen Design System library in this Figma file: <file link>.
+    1. Create variable collections exactly as described in figma/README.md:
+       Primitives (from primitives.json), Semantic with Light and Dark modes
+       (from semantic/light.json and semantic/dark.json, keeping aliases),
+       Typography, Spacing, and Radius.
+    2. Create text styles from typography.json and effect styles from effects.json.
+    3. Create the pages listed in component-spec.md, then build each component
+       set with the listed variant properties, auto layout, and token bindings.
+       Never use raw hex values or unbound numbers.
+    4. Finish with the Cover page and a Foundations page showing swatches,
+       the type scale, spacing, radius, and shadows.
+    Work one component at a time and summarize what you created after each.
+    ```
+  </Step>
+</Steps>
+
+<Tip>
+  Re-run the same prompt with "update" instead of "build" after token changes. The spec's naming is stable, so Claude (or Tokens Studio) updates existing variables in place rather than duplicating them.
+</Tip>

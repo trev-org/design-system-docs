@@ -1,0 +1,298 @@
+{
+  "color": {
+    "base": {
+      "white": {
+        "$type": "color",
+        "$value": "#FFFFFF",
+        "$description": "Pure white."
+      },
+      "black": {
+        "$type": "color",
+        "$value": "#000000",
+        "$description": "Pure black."
+      }
+    },
+    "brand": {
+      "$description": "Iris — the Lumen brand hue. 600 is the default interactive color in light mode.",
+      "50": {
+        "$type": "color",
+        "$value": "#F0F3FF"
+      },
+      "100": {
+        "$type": "color",
+        "$value": "#E0E6FF"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#C7D1FE"
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#A3B1FC"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#7C88F8"
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#5B63F0"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#4845E4"
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#3B36C9"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#322FA2"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#2D2D80"
+      },
+      "950": {
+        "$type": "color",
+        "$value": "#1B1A4B"
+      }
+    },
+    "neutral": {
+      "$description": "Graphite — cool-tinted neutrals for text, surfaces and borders.",
+      "50": {
+        "$type": "color",
+        "$value": "#F7F8FA"
+      },
+      "100": {
+        "$type": "color",
+        "$value": "#EEF0F4"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#DFE2E9"
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#C5CAD5"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#9AA1B1"
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#6E7689"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#535A6C"
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#3F4555"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#2A2F3B"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#191C24"
+      },
+      "950": {
+        "$type": "color",
+        "$value": "#0E1016"
+      }
+    },
+    "green": {
+      "$description": "Success hue.",
+      "50": {
+        "$type": "color",
+        "$value": "#ECFDF5"
+      },
+      "100": {
+        "$type": "color",
+        "$value": "#D1FAE5"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#A7F3D0"
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#6EE7B7"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#34D399"
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#10B981"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#059669"
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#047857"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#065F46"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#064E3B"
+      },
+      "950": {
+        "$type": "color",
+        "$value": "#022C22"
+      }
+    },
+    "amber": {
+      "$description": "Warning hue.",
+      "50": {
+        "$type": "color",
+        "$value": "#FFFBEB"
+      },
+      "100": {
+        "$type": "color",
+        "$value": "#FEF3C7"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#FDE68A"
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#FCD34D"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#FBBF24"
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#F59E0B"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#D97706"
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#B45309"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#92400E"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#78350F"
+      },
+      "950": {
+        "$type": "color",
+        "$value": "#451A03"
+      }
+    },
+    "red": {
+      "$description": "Danger hue.",
+      "50": {
+        "$type": "color",
+        "$value": "#FEF2F2"
+      },
+      "100": {
+        "$type": "color",
+        "$value": "#FEE2E2"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#FECACA"
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#FCA5A5"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#F87171"
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#EF4444"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#DC2626"
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#B91C1C"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#991B1B"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#7F1D1D"
+      },
+      "950": {
+        "$type": "color",
+        "$value": "#450A0A"
+      }
+    },
+    "blue": {
+      "$description": "Info hue.",
+      "50": {
+        "$type": "color",
+        "$value": "#F0F9FF"
+      },
+      "100": {
+        "$type": "color",
+        "$value": "#E0F2FE"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#BAE6FD"
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#7DD3FC"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#38BDF8"
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#0EA5E9"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#0284C7"
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#0369A1"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#075985"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#0C4A6E"
+      },
+      "950": {
+        "$type": "color",
+        "$value": "#082F49"
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+---
+title: "Elevation"
+description: "Shadow levels and z-index layers."
+icon: "layers-2"
+---
+
+import Shadows from "/snippets/generated/shadows.mdx";
+
+Elevation communicates what sits above what. Lumen uses five shadow levels, each with two layers: a tight contact shadow and a soft ambient one.
+
+<Shadows />
+
+## Elevation in dark mode
+
+Shadows are barely visible on dark surfaces. In dark mode, Lumen components that use `shadow.sm` or higher also add a `color.border.subtle` border, and elevated surfaces step up from `neutral.950` (canvas) to `neutral.900` (surface).
+
+## Guidelines
+
+<Columns cols={2}>
+  <Check>
+    **Do** raise elevation on interaction: a card at `shadow.sm` can lift to `shadow.md` on hover.
+  </Check>
+  <Warning>
+    **Don't** stack more than three elevation levels on one screen.
+  </Warning>
+</Columns>

@@ -1,0 +1,39 @@
+---
+title: "Changelog"
+description: "Release notes for Lumen packages and the Figma library."
+icon: "history"
+---
+
+<Update label="September 2026" description="v2.4.0" tags={["Components", "Tokens"]}>
+  ## Avatar, Alert, and switch motion
+
+  - **New:** `Avatar` and `AvatarGroup` with status indicators.
+  - **New:** `Alert` with `info`, `success`, `warning`, and `danger` tones.
+  - **New:** `color.bg.neutral-strong` and `color.bg.knob` tokens for switch tracks and thumbs.
+  - **Improved:** `Switch` thumb uses `easing.emphasized` for a subtle overshoot.
+  - **Figma:** Added Avatar and Alert component sets. Re-import `semantic/light.json` and `semantic/dark.json`.
+</Update>
+
+<Update label="July 2026" description="v2.3.0" tags={["Accessibility", "Tokens"]}>
+  ## Contrast pass
+
+  - **Changed:** `color.border.strong` now maps to `neutral.500` in both modes so input borders meet the 3:1 non-text contrast requirement.
+  - **Changed:** dark-mode `color.text.secondary` moved from `neutral.400` to `neutral.300`.
+  - **New:** the token build prints a WCAG contrast report and fails on regressions.
+</Update>
+
+<Update label="May 2026" description="v2.2.0" tags={["Components"]}>
+  ## Loading buttons and label.lg
+
+  - **New:** `Button` `loading` prop with an accessible busy state.
+  - **New:** `typography.label.lg` text style for large buttons.
+  - **Fixed:** `Tooltip` no longer opens on touch devices when its trigger receives focus programmatically.
+</Update>
+
+<Update label="February 2026" description="v2.0.0" tags={["Breaking", "Tokens"]}>
+  ## Tokens 2.0
+
+  - **Breaking:** tokens migrated to the W3C DTCG format (`$value`, `$type`). The legacy `value`/`type` keys are no longer read.
+  - **Breaking:** CSS variables are now prefixed `--lumen-` instead of `--lm-`.
+  - **New:** Light and Dark modes ship as separate semantic token sets, matching Figma variable modes.
+</Update>

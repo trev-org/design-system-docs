@@ -1,0 +1,153 @@
+{
+  "shadow": {
+    "none": {
+      "$type": "shadow",
+      "$value": [
+        {
+          "color": "#00000000",
+          "offsetX": "0px",
+          "offsetY": "0px",
+          "blur": "0px",
+          "spread": "0px"
+        }
+      ],
+      "$description": "Flat — level 0."
+    },
+    "xs": {
+      "$type": "shadow",
+      "$value": [
+        {
+          "color": "#0E10160F",
+          "offsetX": "0px",
+          "offsetY": "1px",
+          "blur": "2px",
+          "spread": "0px"
+        }
+      ],
+      "$description": "Level 1 — inputs, buttons."
+    },
+    "sm": {
+      "$type": "shadow",
+      "$value": [
+        {
+          "color": "#0E10161A",
+          "offsetX": "0px",
+          "offsetY": "1px",
+          "blur": "3px",
+          "spread": "0px"
+        },
+        {
+          "color": "#0E10161A",
+          "offsetX": "0px",
+          "offsetY": "1px",
+          "blur": "2px",
+          "spread": "-1px"
+        }
+      ],
+      "$description": "Level 2 — cards at rest."
+    },
+    "md": {
+      "$type": "shadow",
+      "$value": [
+        {
+          "color": "#0E10161A",
+          "offsetX": "0px",
+          "offsetY": "4px",
+          "blur": "6px",
+          "spread": "-1px"
+        },
+        {
+          "color": "#0E10160F",
+          "offsetX": "0px",
+          "offsetY": "2px",
+          "blur": "4px",
+          "spread": "-2px"
+        }
+      ],
+      "$description": "Level 3 — raised cards, dropdowns."
+    },
+    "lg": {
+      "$type": "shadow",
+      "$value": [
+        {
+          "color": "#0E10161A",
+          "offsetX": "0px",
+          "offsetY": "10px",
+          "blur": "15px",
+          "spread": "-3px"
+        },
+        {
+          "color": "#0E10160D",
+          "offsetX": "0px",
+          "offsetY": "4px",
+          "blur": "6px",
+          "spread": "-4px"
+        }
+      ],
+      "$description": "Level 4 — popovers, tooltips."
+    },
+    "xl": {
+      "$type": "shadow",
+      "$value": [
+        {
+          "color": "#0E10161F",
+          "offsetX": "0px",
+          "offsetY": "20px",
+          "blur": "25px",
+          "spread": "-5px"
+        },
+        {
+          "color": "#0E101614",
+          "offsetX": "0px",
+          "offsetY": "8px",
+          "blur": "10px",
+          "spread": "-6px"
+        }
+      ],
+      "$description": "Level 5 — modals."
+    },
+    "focus": {
+      "$type": "shadow",
+      "$value": [
+        {
+          "color": "#5B63F059",
+          "offsetX": "0px",
+          "offsetY": "0px",
+          "blur": "0px",
+          "spread": "3px"
+        }
+      ],
+      "$description": "Focus ring halo (brand.500 at 35%)."
+    }
+  },
+  "z-index": {
+    "base": {
+      "$type": "number",
+      "$value": 0
+    },
+    "dropdown": {
+      "$type": "number",
+      "$value": 1000
+    },
+    "sticky": {
+      "$type": "number",
+      "$value": 1100
+    },
+    "overlay": {
+      "$type": "number",
+      "$value": 1300
+    },
+    "modal": {
+      "$type": "number",
+      "$value": 1400
+    },
+    "tooltip": {
+      "$type": "number",
+      "$value": 1500
+    },
+    "toast": {
+      "$type": "number",
+      "$value": 1600
+    }
+  }
+}

@@ -1,0 +1,118 @@
+---
+title: "Tooltip"
+description: "Tooltips show a brief, non-essential label or hint when an element is hovered or focused."
+icon: "message-square"
+tag: "Stable"
+---
+
+import { IconBold, IconSettings } from "/snippets/lumen-icons.jsx";
+
+Use a tooltip to name an icon-only button or reveal a keyboard shortcut. Tooltips are supplementary: never put essential information or interactive content in one. For rich content, use a `Popover`.
+
+<div className="lm-preview">
+  <div className="lm-tooltip-demo">
+    <span className="lm-tooltip" role="tooltip">Bold<kbd>⌘B</kbd></span>
+    <button className="lm-btn lm-btn--secondary lm-btn--icon" aria-label="Bold"><IconBold /></button>
+  </div>
+  <div className="lm-tooltip-demo lm-tooltip-demo--bottom">
+    <span className="lm-tooltip" role="tooltip">Workspace settings</span>
+    <button className="lm-btn lm-btn--ghost lm-btn--icon" aria-label="Workspace settings"><IconSettings /></button>
+  </div>
+</div>
+
+## Anatomy
+
+1. **Container**: fill `color.bg.inverse`, radius `radius.md`, padding `space.1-5` × `space.2`, shadow `shadow.lg`, max width 240px, layer `z-index.tooltip`.
+2. **Label**: `typography.caption.md`, `color.text.inverse`. One short line.
+3. **Shortcut** (optional): `kbd` chip after the label.
+4. **Arrow**: 8px rotated square, same fill, centered on the trigger.
+
+Offset from the trigger: `space.2` (8px).
+
+## Placement
+
+Tooltips prefer `top` and flip automatically when there isn't room. Supported placements: `top`, `bottom`, `left`, `right`, each with `-start` and `-end` alignments.
+
+## Timing
+
+| Event | Delay | Animation |
+|---|---|---|
+| Open on hover | 400ms (0ms if another tooltip closed in the last 300ms) | Fade + 4px slide, `duration.fast`, `easing.enter` |
+| Open on keyboard focus | 0ms | Same |
+| Close | 0ms | Fade, `duration.fast`, `easing.exit` |
+
+## States
+
+| State | Visible | Notes |
+|---|---|---|
+| Hidden | No | Default |
+| Open | Yes | On trigger hover or `:focus-visible` |
+| Disabled trigger | Yes | Use `aria-disabled` on the trigger (not `disabled`) so it can still receive focus and show the tooltip |
+
+## Props
+
+<ResponseField name="content" type="ReactNode" required>
+  The tooltip text. Plain text only; no links or buttons.
+</ResponseField>
+
+<ResponseField name="children" type="ReactElement" required>
+  A single focusable trigger element.
+</ResponseField>
+
+<ResponseField name="placement" type='"top" | "bottom" | "left" | "right"' default="top">
+  Preferred side. Append `-start` or `-end` to align.
+</ResponseField>
+
+<ResponseField name="shortcut" type="string">
+  Keyboard shortcut rendered as a `kbd` chip, such as `"⌘B"`.
+</ResponseField>
+
+<ResponseField name="delay" type="number" default="400">
+  Hover delay in milliseconds before opening.
+</ResponseField>
+
+<ResponseField name="asLabel" type="boolean" default="false">
+  Use the tooltip as the trigger's accessible name (`aria-labelledby`) instead of its description. Set this for icon-only buttons without an `aria-label`.
+</ResponseField>
+
+## Example
+
+```tsx
+import { Tooltip, Button } from "@lumen/react";
+import { BoldIcon } from "@lumen/icons";
+
+<Tooltip content="Bold" shortcut="⌘B" asLabel>
+  <Button variant="secondary" iconOnly>
+    <BoldIcon />
+  </Button>
+</Tooltip>
+```
+
+## Accessibility
+
+- The tooltip has `role="tooltip"` and is linked to its trigger with `aria-describedby` (or `aria-labelledby` with `asLabel`).
+- Opens on keyboard focus as well as hover, and closes on <kbd>Esc</kbd> without moving focus (WCAG 1.4.13).
+- Hoverable: the pointer can move onto the tooltip without it closing.
+- Not shown on touch devices. Make sure the information is available another way, such as a visible label.
+- Text contrast: 17.03:1 (light) and 16.03:1 (dark).
+
+## Usage
+
+<Columns cols={2}>
+  <Check>
+    **Do** use tooltips to name icon-only buttons.
+  </Check>
+  <Warning>
+    **Don't** put essential information, links, or actions in a tooltip.
+  </Warning>
+  <Check>
+    **Do** keep it to a few words, without a trailing period.
+  </Check>
+  <Warning>
+    **Don't** repeat a visible label in a tooltip.
+  </Warning>
+</Columns>
+
+<Info>
+  **Figma:** component set `Tooltip` with properties `Placement` (Top, Bottom, Left, Right) and boolean `Shortcut`.
+</Info>

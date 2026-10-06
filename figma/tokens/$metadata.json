@@ -1,0 +1,13 @@
+{
+  "tokenSetOrder": [
+    "primitives",
+    "semantic/light",
+    "semantic/dark",
+    "typography",
+    "spacing",
+    "radius",
+    "effects",
+    "motion",
+    "breakpoints"
+  ]
+}

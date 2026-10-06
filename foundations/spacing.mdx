@@ -1,0 +1,37 @@
+---
+title: "Spacing"
+description: "A 4px spacing scale for padding, gaps, and layout."
+icon: "ruler"
+---
+
+import Spacing from "/snippets/generated/spacing.mdx";
+
+Lumen spaces everything on a **4px grid**. Token keys are multiples of 4px: `space.4` is 16px, `space.6` is 24px. The only exception is `space.0-5` (2px) for hairline adjustments.
+
+<Spacing />
+
+## How components use spacing
+
+| Context | Token | Value |
+|---|---|---|
+| Icon to label inside a button | `space.2` | 8px |
+| Button horizontal padding (md) | `space.4` | 16px |
+| Label to input | `space.1-5` | 6px |
+| Between form fields | `space.5` | 20px |
+| Card padding | `space.6` | 24px |
+| Between page sections | `space.12` | 48px |
+
+<Tip>
+  In Figma, every auto-layout padding and gap in the Lumen library is bound to a spacing variable. If you type a raw number, the spec lint in [Figma kit](/resources/figma) flags it.
+</Tip>
+
+## Guidelines
+
+<Columns cols={2}>
+  <Check>
+    **Do** use larger gaps to separate groups and smaller gaps to bind related items (proximity).
+  </Check>
+  <Warning>
+    **Don't** use off-grid values like 10px or 15px. Pick the nearest token.
+  </Warning>
+</Columns>

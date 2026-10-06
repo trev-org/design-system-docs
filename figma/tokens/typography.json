@@ -1,0 +1,331 @@
+{
+  "font": {
+    "family": {
+      "sans": {
+        "$type": "fontFamily",
+        "$value": "Inter",
+        "$description": "UI and body text.",
+        "$extensions": {
+          "com.lumen": {
+            "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+          }
+        }
+      },
+      "display": {
+        "$type": "fontFamily",
+        "$value": "Plus Jakarta Sans",
+        "$description": "Display and headings.",
+        "$extensions": {
+          "com.lumen": {
+            "fallback": "Inter, ui-sans-serif, system-ui, sans-serif"
+          }
+        }
+      },
+      "mono": {
+        "$type": "fontFamily",
+        "$value": "JetBrains Mono",
+        "$description": "Code and tabular figures.",
+        "$extensions": {
+          "com.lumen": {
+            "fallback": "ui-monospace, SFMono-Regular, Menlo, monospace"
+          }
+        }
+      }
+    },
+    "weight": {
+      "regular": {
+        "$type": "fontWeight",
+        "$value": 400
+      },
+      "medium": {
+        "$type": "fontWeight",
+        "$value": 500
+      },
+      "semibold": {
+        "$type": "fontWeight",
+        "$value": 600
+      },
+      "bold": {
+        "$type": "fontWeight",
+        "$value": 700
+      }
+    },
+    "size": {
+      "xs": {
+        "$type": "dimension",
+        "$value": "12px"
+      },
+      "sm": {
+        "$type": "dimension",
+        "$value": "14px"
+      },
+      "md": {
+        "$type": "dimension",
+        "$value": "16px"
+      },
+      "lg": {
+        "$type": "dimension",
+        "$value": "18px"
+      },
+      "xl": {
+        "$type": "dimension",
+        "$value": "20px"
+      },
+      "2xl": {
+        "$type": "dimension",
+        "$value": "24px"
+      },
+      "3xl": {
+        "$type": "dimension",
+        "$value": "30px"
+      },
+      "4xl": {
+        "$type": "dimension",
+        "$value": "36px"
+      },
+      "5xl": {
+        "$type": "dimension",
+        "$value": "48px"
+      },
+      "6xl": {
+        "$type": "dimension",
+        "$value": "60px"
+      }
+    },
+    "line-height": {
+      "16": {
+        "$type": "dimension",
+        "$value": "16px"
+      },
+      "20": {
+        "$type": "dimension",
+        "$value": "20px"
+      },
+      "24": {
+        "$type": "dimension",
+        "$value": "24px"
+      },
+      "28": {
+        "$type": "dimension",
+        "$value": "28px"
+      },
+      "32": {
+        "$type": "dimension",
+        "$value": "32px"
+      },
+      "38": {
+        "$type": "dimension",
+        "$value": "38px"
+      },
+      "44": {
+        "$type": "dimension",
+        "$value": "44px"
+      },
+      "56": {
+        "$type": "dimension",
+        "$value": "56px"
+      },
+      "72": {
+        "$type": "dimension",
+        "$value": "72px"
+      }
+    },
+    "letter-spacing": {
+      "tight": {
+        "$type": "dimension",
+        "$value": "-2%"
+      },
+      "snug": {
+        "$type": "dimension",
+        "$value": "-1%"
+      },
+      "normal": {
+        "$type": "dimension",
+        "$value": "0%"
+      },
+      "wide": {
+        "$type": "dimension",
+        "$value": "1%"
+      }
+    }
+  },
+  "typography": {
+    "display": {
+      "2xl": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.display}",
+          "fontSize": "{font.size.6xl}",
+          "fontWeight": "{font.weight.bold}",
+          "lineHeight": "{font.line-height.72}",
+          "letterSpacing": "{font.letter-spacing.tight}"
+        },
+        "$description": "Marketing heroes."
+      },
+      "xl": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.display}",
+          "fontSize": "{font.size.5xl}",
+          "fontWeight": "{font.weight.bold}",
+          "lineHeight": "{font.line-height.56}",
+          "letterSpacing": "{font.letter-spacing.tight}"
+        },
+        "$description": "Page heroes."
+      },
+      "lg": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.display}",
+          "fontSize": "{font.size.4xl}",
+          "fontWeight": "{font.weight.bold}",
+          "lineHeight": "{font.line-height.44}",
+          "letterSpacing": "{font.letter-spacing.tight}"
+        },
+        "$description": "Section heroes."
+      }
+    },
+    "heading": {
+      "xl": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.display}",
+          "fontSize": "{font.size.3xl}",
+          "fontWeight": "{font.weight.semibold}",
+          "lineHeight": "{font.line-height.38}",
+          "letterSpacing": "{font.letter-spacing.snug}"
+        },
+        "$description": "Page titles (h1)."
+      },
+      "lg": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.display}",
+          "fontSize": "{font.size.2xl}",
+          "fontWeight": "{font.weight.semibold}",
+          "lineHeight": "{font.line-height.32}",
+          "letterSpacing": "{font.letter-spacing.snug}"
+        },
+        "$description": "Section titles (h2)."
+      },
+      "md": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.display}",
+          "fontSize": "{font.size.xl}",
+          "fontWeight": "{font.weight.semibold}",
+          "lineHeight": "{font.line-height.28}",
+          "letterSpacing": "{font.letter-spacing.snug}"
+        },
+        "$description": "Subsection titles (h3), modal titles."
+      },
+      "sm": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.sans}",
+          "fontSize": "{font.size.md}",
+          "fontWeight": "{font.weight.semibold}",
+          "lineHeight": "{font.line-height.24}",
+          "letterSpacing": "{font.letter-spacing.normal}"
+        },
+        "$description": "Card titles (h4)."
+      }
+    },
+    "body": {
+      "lg": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.sans}",
+          "fontSize": "{font.size.lg}",
+          "fontWeight": "{font.weight.regular}",
+          "lineHeight": "{font.line-height.28}",
+          "letterSpacing": "{font.letter-spacing.normal}"
+        },
+        "$description": "Lead paragraphs."
+      },
+      "md": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.sans}",
+          "fontSize": "{font.size.md}",
+          "fontWeight": "{font.weight.regular}",
+          "lineHeight": "{font.line-height.24}",
+          "letterSpacing": "{font.letter-spacing.normal}"
+        },
+        "$description": "Default body copy."
+      },
+      "sm": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.sans}",
+          "fontSize": "{font.size.sm}",
+          "fontWeight": "{font.weight.regular}",
+          "lineHeight": "{font.line-height.20}",
+          "letterSpacing": "{font.letter-spacing.normal}"
+        },
+        "$description": "Dense UI copy, table cells."
+      }
+    },
+    "label": {
+      "lg": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.sans}",
+          "fontSize": "{font.size.md}",
+          "fontWeight": "{font.weight.medium}",
+          "lineHeight": "{font.line-height.24}",
+          "letterSpacing": "{font.letter-spacing.normal}"
+        },
+        "$description": "Large buttons."
+      },
+      "md": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.sans}",
+          "fontSize": "{font.size.sm}",
+          "fontWeight": "{font.weight.medium}",
+          "lineHeight": "{font.line-height.20}",
+          "letterSpacing": "{font.letter-spacing.normal}"
+        },
+        "$description": "Buttons, form labels."
+      },
+      "sm": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.sans}",
+          "fontSize": "{font.size.xs}",
+          "fontWeight": "{font.weight.medium}",
+          "lineHeight": "{font.line-height.16}",
+          "letterSpacing": "{font.letter-spacing.wide}"
+        },
+        "$description": "Badges, small buttons."
+      }
+    },
+    "caption": {
+      "md": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.sans}",
+          "fontSize": "{font.size.xs}",
+          "fontWeight": "{font.weight.regular}",
+          "lineHeight": "{font.line-height.16}",
+          "letterSpacing": "{font.letter-spacing.wide}"
+        },
+        "$description": "Helper text, timestamps."
+      }
+    },
+    "code": {
+      "md": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.mono}",
+          "fontSize": "{font.size.sm}",
+          "fontWeight": "{font.weight.regular}",
+          "lineHeight": "{font.line-height.20}",
+          "letterSpacing": "{font.letter-spacing.normal}"
+        },
+        "$description": "Inline and block code."
+      }
+    }
+  }
+}

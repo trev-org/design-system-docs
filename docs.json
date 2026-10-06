@@ -1,0 +1,178 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "aspen",
+  "name": "Lumen Design System",
+  "description": "Lumen is an open, token-driven design system: foundations, accessible React components, and a Figma-ready token pipeline.",
+  "colors": {
+    "primary": "#4845E4",
+    "light": "#7C88F8",
+    "dark": "#5B63F0"
+  },
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg",
+    "href": "/"
+  },
+  "favicon": "/favicon.svg",
+  "fonts": {
+    "heading": {
+      "family": "Plus Jakarta Sans",
+      "weight": 600
+    },
+    "body": {
+      "family": "Inter"
+    }
+  },
+  "icons": {
+    "library": "lucide"
+  },
+  "appearance": {
+    "default": "system"
+  },
+  "background": {
+    "color": {
+      "light": "#FFFFFF",
+      "dark": "#0E1016"
+    }
+  },
+  "styling": {
+    "eyebrows": "breadcrumbs",
+    "codeblocks": {
+      "theme": {
+        "light": "github-light",
+        "dark": "github-dark"
+      }
+    }
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Figma kit",
+        "icon": "pen-tool",
+        "href": "/resources/figma"
+      },
+      {
+        "label": "Changelog",
+        "icon": "history",
+        "href": "/get-started/changelog"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Install",
+      "href": "/get-started/installation"
+    }
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Get started",
+        "icon": "rocket",
+        "groups": [
+          {
+            "group": "Get started",
+            "pages": [
+              "index",
+              "get-started/installation",
+              "get-started/theming",
+              "get-started/principles"
+            ]
+          },
+          {
+            "group": "Community",
+            "pages": [
+              "get-started/contributing",
+              "get-started/changelog"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Foundations",
+        "icon": "palette",
+        "groups": [
+          {
+            "group": "Foundations",
+            "pages": [
+              "foundations/overview",
+              "foundations/color",
+              "foundations/typography",
+              "foundations/spacing",
+              "foundations/radius",
+              "foundations/elevation",
+              "foundations/motion",
+              "foundations/breakpoints",
+              "foundations/accessibility"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Components",
+        "icon": "component",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": ["components/overview"]
+          },
+          {
+            "group": "Actions",
+            "pages": ["components/button"]
+          },
+          {
+            "group": "Forms",
+            "pages": ["components/input", "components/checkbox", "components/switch"]
+          },
+          {
+            "group": "Data display",
+            "pages": ["components/card", "components/badge", "components/avatar"]
+          },
+          {
+            "group": "Feedback and overlays",
+            "pages": ["components/alert", "components/tooltip", "components/modal"]
+          }
+        ]
+      },
+      {
+        "tab": "Resources",
+        "icon": "library",
+        "groups": [
+          {
+            "group": "Design resources",
+            "pages": ["resources/figma", "resources/design-tokens"]
+          }
+        ]
+      }
+    ]
+  },
+  "contextual": {
+    "options": ["copy", "view", "chatgpt", "claude"]
+  },
+  "footer": {
+    "links": [
+      {
+        "header": "Docs",
+        "items": [
+          { "label": "Introduction", "href": "/" },
+          { "label": "Foundations", "href": "/foundations/overview" },
+          { "label": "Components", "href": "/components/overview" }
+        ]
+      },
+      {
+        "header": "Design",
+        "items": [
+          { "label": "Figma kit", "href": "/resources/figma" },
+          { "label": "Design tokens", "href": "/resources/design-tokens" },
+          { "label": "Principles", "href": "/get-started/principles" }
+        ]
+      },
+      {
+        "header": "Community",
+        "items": [
+          { "label": "Contributing", "href": "/get-started/contributing" },
+          { "label": "Changelog", "href": "/get-started/changelog" }
+        ]
+      }
+    ]
+  }
+}

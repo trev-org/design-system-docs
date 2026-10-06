@@ -1,0 +1,49 @@
+---
+title: "Foundations"
+description: "The visual building blocks every Lumen component is made from."
+icon: "layers"
+---
+
+Foundations are the decisions you shouldn't have to make twice. Each one is defined as design tokens in `figma/tokens/` and documented here with values generated from that source.
+
+<Columns cols={2}>
+  <Card title="Color" icon="palette" href="/foundations/color">
+    An 11-step Iris brand scale, Graphite neutrals, four feedback hues, and semantic aliases for light and dark mode.
+  </Card>
+  <Card title="Typography" icon="type" href="/foundations/typography">
+    Inter, Plus Jakarta Sans, and JetBrains Mono across a 15-style type scale.
+  </Card>
+  <Card title="Spacing" icon="ruler" href="/foundations/spacing">
+    A 4px grid from 2px to 96px.
+  </Card>
+  <Card title="Radius" icon="square-dashed" href="/foundations/radius">
+    Eight corner radii, from crisp to pill.
+  </Card>
+  <Card title="Elevation" icon="layers-2" href="/foundations/elevation">
+    Five shadow levels and a z-index scale for overlays.
+  </Card>
+  <Card title="Motion" icon="timer" href="/foundations/motion">
+    Durations and easing curves that keep transitions quick and purposeful.
+  </Card>
+  <Card title="Breakpoints" icon="monitor-smartphone" href="/foundations/breakpoints">
+    Five mobile-first breakpoints.
+  </Card>
+  <Card title="Accessibility" icon="accessibility" href="/foundations/accessibility">
+    Contrast guarantees, focus, keyboard, and motion preferences.
+  </Card>
+</Columns>
+
+## Token naming
+
+Tokens are named from general to specific, separated by dots in JSON and dashes in CSS.
+
+| Layer | Pattern | Example | CSS variable |
+|---|---|---|---|
+| Primitive | `category.scale.step` | `color.brand.600` | `--lumen-color-brand-600` |
+| Semantic | `category.role.variant` | `color.bg.brand-hover` | `--lumen-color-bg-brand-hover` |
+| Type style | `typography.group.size` | `typography.heading.lg` | `--lumen-typography-heading-lg` |
+| Dimension | `category.step` | `space.4`, `radius.md` | `--lumen-space-4`, `--lumen-radius-md` |
+
+<Info>
+  Components reference **semantic** tokens only. Primitives exist so semantic tokens have something to point at, and so you can build one-off illustrations.
+</Info>

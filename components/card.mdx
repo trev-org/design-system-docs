@@ -1,0 +1,179 @@
+---
+title: "Card"
+description: "Cards group related content and actions about a single subject."
+icon: "credit-card"
+tag: "Stable"
+---
+
+import { IconChart, IconArrowRight } from "/snippets/lumen-icons.jsx";
+
+Use a card to present a self-contained summary, such as a project, a plan, or a metric, that people can scan and act on.
+
+<div className="lm-preview">
+  <div className="lm-card lm-card--elevated">
+    <div className="lm-card-media" />
+    <div className="lm-card-body">
+      <span className="lm-badge lm-badge--brand lm-badge--sm" style={{ alignSelf: "flex-start" }}>Analytics</span>
+      <h4 className="lm-card-title">Quarterly revenue report</h4>
+      <p className="lm-card-desc">Revenue grew 18% quarter over quarter, led by the self-serve plan.</p>
+    </div>
+    <div className="lm-card-footer">
+      <button className="lm-btn lm-btn--ghost lm-btn--sm">Share</button>
+      <button className="lm-btn lm-btn--primary lm-btn--sm">Open report</button>
+    </div>
+  </div>
+</div>
+
+## Anatomy
+
+1. **Container**: fill `color.bg.surface`, radius `radius.lg`, vertical auto layout, clips content.
+2. **Media** (optional): full-bleed image or illustration, 16:9 or fixed 120px height.
+3. **Header**: optional badge or eyebrow, title (`typography.heading.sm`, `color.text.primary`), description (`typography.body.sm`, `color.text.secondary`). Gap `space.2`.
+4. **Body**: any content. Padding `space.6` (24px), or `space.4` for the compact density.
+5. **Footer** (optional): actions aligned to the end, gap `space.2`, padding `space.4` / `space.6`, top border `color.border.subtle`.
+
+## Variants
+
+<div className="lm-preview">
+  <div className="lm-card"><div className="lm-card-body"><h4 className="lm-card-title">Outlined</h4><p className="lm-card-desc">Default. Border `color.border.default`, no shadow. Use in dense layouts.</p></div></div>
+  <div className="lm-card lm-card--elevated"><div className="lm-card-body"><h4 className="lm-card-title">Elevated</h4><p className="lm-card-desc">No border, `shadow.sm`. Use to lift a card off a busy background.</p></div></div>
+  <div className="lm-card lm-card--filled"><div className="lm-card-body"><h4 className="lm-card-title">Filled</h4><p className="lm-card-desc">Fill `color.bg.subtle`, no border. Use for secondary, nested groups.</p></div></div>
+</div>
+
+### Interactive cards
+
+When the whole card is a link or button, add `interactive`. On hover it lifts to `shadow.md` and the border strengthens to `color.border.strong`.
+
+<div className="lm-preview">
+  <a className="lm-card lm-card--interactive lm-card--compact" href="#interactive-cards" style={{ textDecoration: "none" }}>
+    <div className="lm-card-body">
+      <span style={{ color: "var(--lumen-color-text-brand)", width: "24px", height: "24px", display: "inline-flex" }}><IconChart /></span>
+      <h4 className="lm-card-title">Usage dashboard</h4>
+      <p className="lm-card-desc">Track seats, API calls, and storage.</p>
+      <span className="lm-card-desc" style={{ display: "inline-flex", alignItems: "center", gap: "4px", color: "var(--lumen-color-text-brand)" }}>View dashboard<span style={{ width: "16px", height: "16px", display: "inline-flex" }}><IconArrowRight /></span></span>
+    </div>
+  </a>
+</div>
+
+## Sizes and density
+
+| Density | Body padding | Footer padding | Use for |
+|---|---|---|---|
+| `comfortable` (default) | `space.6` (24px) | `space.4` × `space.6` | Dashboards, marketing, settings |
+| `compact` | `space.4` (16px) | `space.3` × `space.4` | Grids of many cards, sidebars |
+
+Cards are fluid: they fill their grid column. Recommended minimum width is 240px.
+
+## States
+
+| State | Outlined | Elevated | Applies to |
+|---|---|---|---|
+| Default | `color.border.default` | `shadow.sm` | All |
+| Hover | `color.border.strong` + `shadow.md` | `shadow.md` | Interactive only |
+| Focus | 2px `color.border.focus` outline, 2px offset | same | Interactive only |
+| Selected | 2px `color.border.brand` border, fill `color.bg.brand-subtle` | same | Selectable only |
+| Disabled | 50% opacity, no hover | same | Interactive only |
+
+## Props
+
+<ResponseField name="variant" type='"outlined" | "elevated" | "filled"' default="outlined">
+  Visual treatment.
+</ResponseField>
+
+<ResponseField name="density" type='"comfortable" | "compact"' default="comfortable">
+  Internal padding.
+</ResponseField>
+
+<ResponseField name="title" type="ReactNode">
+  Card heading, rendered as `h3` by default. Change with `titleAs`.
+</ResponseField>
+
+<ResponseField name="description" type="ReactNode">
+  Supporting text below the title.
+</ResponseField>
+
+<ResponseField name="media" type="ReactNode">
+  Full-bleed content above the header, usually an `<img>` with `alt` text.
+</ResponseField>
+
+<ResponseField name="footer" type="ReactNode">
+  Actions rendered in the footer area.
+</ResponseField>
+
+<ResponseField name="interactive" type="boolean" default="false">
+  Adds hover and focus styles. Combine with `asChild` to render the card as a link.
+</ResponseField>
+
+<ResponseField name="selected" type="boolean" default="false">
+  Selected style for cards used as large radio options. Sets `aria-checked` when inside a `CardGroup` with `type="single"`.
+</ResponseField>
+
+<ResponseField name="titleAs" type='"h2" | "h3" | "h4"' default="h3">
+  Heading level for the title so it fits the page outline.
+</ResponseField>
+
+## Examples
+
+<CodeGroup>
+```tsx Basic
+import { Card, Button, Badge } from "@lumen/react";
+
+<Card
+  variant="elevated"
+  title="Quarterly revenue report"
+  description="Revenue grew 18% quarter over quarter."
+  footer={
+    <>
+      <Button variant="ghost" size="sm">Share</Button>
+      <Button variant="primary" size="sm">Open report</Button>
+    </>
+  }
+>
+  <Badge tone="brand">Analytics</Badge>
+</Card>
+```
+```tsx Link card
+import Link from "next/link";
+import { Card } from "@lumen/react";
+
+<Card asChild interactive density="compact" title="Usage dashboard" description="Track seats, API calls, and storage.">
+  <Link href="/usage" />
+</Card>
+```
+```tsx Selectable
+import { Card, CardGroup } from "@lumen/react";
+
+<CardGroup type="single" defaultValue="pro" aria-label="Plan">
+  <Card value="starter" title="Starter" description="$0 / month" />
+  <Card value="pro" title="Pro" description="$24 / seat / month" />
+</CardGroup>
+```
+</CodeGroup>
+
+## Accessibility
+
+- A plain card is a `<div>` with no role. Give its title a heading level that fits the page outline.
+- An interactive card wraps the **whole** card in a single link or button. Don't nest other interactive elements inside it, as nested links are invalid and confusing for screen readers.
+- If a card has several actions, keep the card non-interactive and put buttons in the footer.
+- Selectable cards in a `CardGroup` use `role="radiogroup"` / `role="radio"` and arrow-key navigation.
+
+## Usage
+
+<Columns cols={2}>
+  <Check>
+    **Do** keep cards about one subject, with at most one primary action.
+  </Check>
+  <Warning>
+    **Don't** nest cards inside cards. Use a divider or a filled section instead.
+  </Warning>
+  <Check>
+    **Do** align cards in a grid with equal heights per row.
+  </Check>
+  <Warning>
+    **Don't** make a card interactive and also put buttons inside it.
+  </Warning>
+</Columns>
+
+<Info>
+  **Figma:** component set `Card` with properties `Variant` (Outlined, Elevated, Filled), `Density` (Comfortable, Compact), `State` (Default, Hover, Selected), and booleans `Media`, `Footer`. The body is a slot (instance swap) named `Content`.
+</Info>

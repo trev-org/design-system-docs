@@ -1,0 +1,257 @@
+---
+title: "Button"
+description: "Buttons trigger an action, such as submitting a form, opening a dialog, or confirming a choice."
+icon: "mouse-pointer-click"
+tag: "Stable"
+---
+
+import { IconPlus, IconArrowRight, IconTrash, IconSettings } from "/snippets/lumen-icons.jsx";
+
+Use a button when the user can **do** something. If clicking takes them somewhere else, use a link instead.
+
+<div className="lm-preview">
+  <button className="lm-btn lm-btn--primary"><IconPlus />New project</button>
+  <button className="lm-btn lm-btn--secondary">Cancel</button>
+  <button className="lm-btn lm-btn--ghost">Learn more<IconArrowRight /></button>
+  <button className="lm-btn lm-btn--danger"><IconTrash />Delete</button>
+</div>
+
+```tsx
+import { Button } from "@lumen/react";
+
+<Button variant="primary" iconStart={<PlusIcon />}>New project</Button>
+```
+
+## Anatomy
+
+<div className="lm-preview">
+  <div className="lm-anatomy">
+    <button className="lm-btn lm-btn--primary lm-btn--lg"><IconPlus />New project</button>
+    <span className="lm-pin" style={{ top: "6px", left: "30px" }}>1</span>
+    <span className="lm-pin" style={{ top: "6px", left: "60px" }}>2</span>
+    <span className="lm-pin" style={{ top: "6px", left: "123px" }}>3</span>
+    <span className="lm-pin" style={{ bottom: "6px", right: "30px" }}>4</span>
+  </div>
+</div>
+
+1. **Container**: background `color.bg.brand`, radius `radius.md`, shadow `shadow.xs`. Horizontal auto layout, centered.
+2. **Leading icon** (optional): 16px (20px at `lg`), inherits text color.
+3. **Label**: `typography.label.md` (`label.lg` at `lg`), color `color.text.on-brand`. Sentence case, verb first.
+4. **Focus ring**: 2px `color.border.focus` outline, 2px offset. Appears on keyboard focus only.
+
+## Variants
+
+<Tabs>
+  <Tab title="Primary">
+    The single most important action on the page. Use **one** per view.
+
+    <div className="lm-preview"><button className="lm-btn lm-btn--primary">Save changes</button></div>
+
+    | Layer | Token |
+    |---|---|
+    | Fill | `color.bg.brand` → hover `color.bg.brand-hover` → pressed `color.bg.brand-active` |
+    | Label and icon | `color.text.on-brand` |
+  </Tab>
+  <Tab title="Secondary">
+    Alternative or supporting actions, such as **Cancel** next to **Save**.
+
+    <div className="lm-preview"><button className="lm-btn lm-btn--secondary">Export CSV</button></div>
+
+    | Layer | Token |
+    |---|---|
+    | Fill | `color.bg.surface` → hover `color.bg.subtle` → pressed `color.bg.muted` |
+    | Border | `color.border.strong` |
+    | Label and icon | `color.text.primary` |
+  </Tab>
+  <Tab title="Ghost">
+    Low-emphasis actions in toolbars, table rows, and cards.
+
+    <div className="lm-preview"><button className="lm-btn lm-btn--ghost"><IconSettings />Settings</button></div>
+
+    | Layer | Token |
+    |---|---|
+    | Fill | transparent → hover `color.bg.muted` → pressed `color.bg.emphasis` |
+    | Label and icon | `color.text.primary` |
+  </Tab>
+  <Tab title="Danger">
+    Destructive, hard-to-undo actions. Usually inside a confirmation [modal](/components/modal).
+
+    <div className="lm-preview"><button className="lm-btn lm-btn--danger">Delete workspace</button></div>
+
+    | Layer | Token |
+    |---|---|
+    | Fill | `color.bg.danger` → hover `color.bg.danger-hover` |
+    | Label and icon | `color.text.on-brand` |
+  </Tab>
+</Tabs>
+
+## Sizes
+
+<div className="lm-preview">
+  <button className="lm-btn lm-btn--primary lm-btn--sm">Small</button>
+  <button className="lm-btn lm-btn--primary">Medium</button>
+  <button className="lm-btn lm-btn--primary lm-btn--lg">Large</button>
+  <button className="lm-btn lm-btn--secondary lm-btn--icon" aria-label="Settings"><IconSettings /></button>
+</div>
+
+| Size | Height | Padding X | Gap | Text style | Icon |
+|---|---|---|---|---|---|
+| `sm` | 32px | `space.3` (12px) | `space.1-5` (6px) | `label.md` | 16px |
+| `md` (default) | 40px | `space.4` (16px) | `space.2` (8px) | `label.md` | 16px |
+| `lg` | 48px | `space.5` (20px) | `space.2` (8px) | `label.lg` | 20px |
+
+Icon-only buttons are square (32, 40, or 48px) and **require** an `aria-label`.
+
+## States
+
+<div className="lm-preview">
+  <div className="lm-state-grid">
+    <div><span className="lm-label-caption">Default</span><button className="lm-btn lm-btn--primary">Button</button></div>
+    <div><span className="lm-label-caption">Hover</span><button className="lm-btn lm-btn--primary is-hover">Button</button></div>
+    <div><span className="lm-label-caption">Focus</span><button className="lm-btn lm-btn--primary is-focus">Button</button></div>
+    <div><span className="lm-label-caption">Pressed</span><button className="lm-btn lm-btn--primary is-active">Button</button></div>
+    <div><span className="lm-label-caption">Disabled</span><button className="lm-btn lm-btn--primary" disabled>Button</button></div>
+    <div><span className="lm-label-caption">Loading</span><button className="lm-btn lm-btn--primary is-loading" aria-busy="true"><span className="lm-spinner" />Saving…</button></div>
+  </div>
+</div>
+
+| State | Change | Transition |
+|---|---|---|
+| Hover | Fill moves one step darker (`-hover` token) | `duration.fast`, `easing.standard` |
+| Focus | 2px `color.border.focus` outline, 2px offset | instant |
+| Pressed | Fill moves to the `-active` token | `duration.instant` |
+| Disabled | Fill `color.bg.muted`, label `color.text.disabled`, no shadow, `cursor: not-allowed` | none |
+| Loading | Leading spinner replaces the icon, label changes to a progress verb, clicks are ignored | none |
+
+## Props
+
+<ResponseField name="variant" type='"primary" | "secondary" | "ghost" | "danger"' default="secondary">
+  Visual emphasis of the button. Maps to the Figma property `Variant`.
+</ResponseField>
+
+<ResponseField name="size" type='"sm" | "md" | "lg"' default="md">
+  Height and padding. Maps to the Figma property `Size`.
+</ResponseField>
+
+<ResponseField name="iconStart" type="ReactNode">
+  Icon rendered before the label. Decorative, so it's hidden from assistive technology.
+</ResponseField>
+
+<ResponseField name="iconEnd" type="ReactNode">
+  Icon rendered after the label, typically an arrow or chevron.
+</ResponseField>
+
+<ResponseField name="iconOnly" type="boolean" default="false">
+  Renders a square button with no visible label. Requires `aria-label`.
+</ResponseField>
+
+<ResponseField name="loading" type="boolean" default="false">
+  Shows a spinner, sets `aria-busy="true"`, and ignores clicks while keeping the button focusable.
+</ResponseField>
+
+<ResponseField name="disabled" type="boolean" default="false">
+  Prevents interaction. Prefer leaving buttons enabled and explaining errors on submit.
+</ResponseField>
+
+<ResponseField name="fullWidth" type="boolean" default="false">
+  Stretches the button to fill its container. Use on mobile and in narrow forms.
+</ResponseField>
+
+<ResponseField name="asChild" type="boolean" default="false">
+  Merges button styles onto its single child, for example a router `Link`.
+</ResponseField>
+
+<ResponseField name="type" type='"button" | "submit" | "reset"' default="button">
+  Native button type. Defaults to `button` so buttons inside forms don't submit by accident.
+</ResponseField>
+
+Also accepts every native `<button>` attribute.
+
+## Examples
+
+<CodeGroup>
+```tsx Basic
+import { Button } from "@lumen/react";
+
+export function SaveBar() {
+  return (
+    <div className="save-bar">
+      <Button variant="secondary">Cancel</Button>
+      <Button variant="primary" type="submit">Save changes</Button>
+    </div>
+  );
+}
+```
+```tsx Loading
+import { useState } from "react";
+import { Button } from "@lumen/react";
+
+export function PublishButton({ onPublish }: { onPublish: () => Promise<void> }) {
+  const [pending, setPending] = useState(false);
+  return (
+    <Button
+      variant="primary"
+      loading={pending}
+      onClick={async () => {
+        setPending(true);
+        await onPublish();
+        setPending(false);
+      }}
+    >
+      {pending ? "Publishing…" : "Publish"}
+    </Button>
+  );
+}
+```
+```tsx Icon only
+import { Button } from "@lumen/react";
+import { SettingsIcon } from "@lumen/icons";
+
+<Button variant="ghost" iconOnly aria-label="Open settings">
+  <SettingsIcon />
+</Button>
+```
+```tsx As link
+import Link from "next/link";
+import { Button } from "@lumen/react";
+
+<Button asChild variant="primary">
+  <Link href="/billing">Upgrade plan</Link>
+</Button>
+```
+</CodeGroup>
+
+## Accessibility
+
+- Renders a native `<button>`, so <kbd>Enter</kbd> and <kbd>Space</kbd> activate it and it's in the tab order by default.
+- `loading` sets `aria-busy="true"` and announces the new label through an `aria-live="polite"` region. The button stays focusable so focus isn't lost.
+- `disabled` uses the native attribute. If users need to discover *why* an action is unavailable, use `aria-disabled="true"` with a [tooltip](/components/tooltip) instead.
+- Icon-only buttons need an `aria-label` that describes the action ("Delete row"), not the icon ("Trash").
+- Label contrast: 6.47:1 on `color.bg.brand` in light mode, 4.68:1 in dark mode. Danger label: 4.83:1.
+
+## Usage
+
+<Columns cols={2}>
+  <Check>
+    **Do** use one primary button per view, placed at the end of the action group (right on desktop).
+  </Check>
+  <Warning>
+    **Don't** place two primary buttons side by side. Demote one to secondary.
+  </Warning>
+  <Check>
+    **Do** start labels with a verb: "Create project", "Send invite".
+  </Check>
+  <Warning>
+    **Don't** use vague labels like "OK", "Yes", or "Click here".
+  </Warning>
+  <Check>
+    **Do** use the danger variant only for destructive actions, and confirm them.
+  </Check>
+  <Warning>
+    **Don't** use a button for navigation. Use a link, or `asChild` with a link.
+  </Warning>
+</Columns>
+
+<Info>
+  **Figma:** component set `Button` with properties `Variant` (Primary, Secondary, Ghost, Danger), `Size` (Sm, Md, Lg), `State` (Default, Hover, Focus, Pressed, Disabled, Loading), and booleans `Icon start`, `Icon end`, `Icon only`. See `figma/component-spec.md`.
+</Info>

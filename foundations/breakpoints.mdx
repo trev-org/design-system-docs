@@ -1,0 +1,37 @@
+---
+title: "Breakpoints"
+description: "Mobile-first responsive breakpoints."
+icon: "monitor-smartphone"
+---
+
+import Breakpoints from "/snippets/generated/breakpoints.mdx";
+
+Lumen layouts are mobile first: write the base styles for small screens, then add `min-width` media queries as space grows.
+
+<Breakpoints />
+
+```css
+.dashboard {
+  display: grid;
+  gap: var(--lumen-space-4);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 768px) {   /* breakpoint.md */
+  .dashboard { grid-template-columns: repeat(2, 1fr); gap: var(--lumen-space-6); }
+}
+@media (min-width: 1280px) {  /* breakpoint.xl */
+  .dashboard { grid-template-columns: repeat(4, 1fr); }
+}
+```
+
+<Note>
+  CSS custom properties can't be used inside media queries, so breakpoint values are also exported in `tokens/lumen.tokens.json` for use in JavaScript and in preprocessors.
+</Note>
+
+## Layout grid
+
+| Breakpoint | Columns | Gutter | Page margin |
+|---|---|---|---|
+| < `sm` | 4 | `space.4` (16px) | `space.4` (16px) |
+| `md` | 8 | `space.6` (24px) | `space.8` (32px) |
+| `lg` and up | 12 | `space.6` (24px) | `space.10` (40px) |

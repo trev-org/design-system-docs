@@ -1,0 +1,34 @@
+---
+title: "Motion"
+description: "Durations and easing curves for purposeful transitions."
+icon: "timer"
+---
+
+import Motion from "/snippets/generated/motion.mdx";
+
+Motion in Lumen is quick and functional. It confirms an action, shows where something came from, or draws attention to a change. It never delays the user.
+
+<div className="lm-preview">
+  <div className="lm-motion-track" aria-hidden="true"><div className="lm-motion-dot" /></div>
+</div>
+
+<Motion />
+
+## Choosing a duration
+
+- **Small, frequent changes** (hover, focus, color): `duration.fast` with `easing.standard`.
+- **Toggles and reveals** (switch, accordion): `duration.normal`.
+- **Entering overlays** (modal, drawer): `duration.slow` with `easing.enter`; exit with `duration.normal` and `easing.exit`, because leaving should be faster than arriving.
+
+```css
+.lumen-modal[data-state="open"] {
+  animation: lumen-modal-in var(--lumen-duration-slow) var(--lumen-easing-enter);
+}
+.lumen-modal[data-state="closed"] {
+  animation: lumen-modal-out var(--lumen-duration-normal) var(--lumen-easing-exit);
+}
+```
+
+<Warning>
+  Respect `prefers-reduced-motion`. Lumen components replace movement with an instant opacity change when it's set. `LumenProvider` exposes this as `useReducedMotion()`.
+</Warning>

@@ -1,0 +1,3 @@
+# Source files that live in the repo but are not docs pages
+figma/*.md
+scripts/

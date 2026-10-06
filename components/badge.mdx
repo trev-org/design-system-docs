@@ -1,0 +1,147 @@
+---
+title: "Badge"
+description: "Badges label, categorize, or show the status of an item."
+icon: "tag"
+tag: "Stable"
+---
+
+Use badges for short, non-interactive metadata, such as a status, a category, or a count. If people can click it to filter or remove it, use a `Tag` or `Chip` instead.
+
+<div className="lm-preview">
+  <span className="lm-badge lm-badge--neutral">Draft</span>
+  <span className="lm-badge lm-badge--brand">New</span>
+  <span className="lm-badge lm-badge--success"><span className="lm-badge-dot" />Active</span>
+  <span className="lm-badge lm-badge--warning">Pending</span>
+  <span className="lm-badge lm-badge--danger">Overdue</span>
+  <span className="lm-badge lm-badge--info">Beta</span>
+</div>
+
+## Anatomy
+
+1. **Container**: height 24px (20px at `sm`), padding X `space.2` (`space.1-5` at `sm`), radius `radius.full`, horizontal auto layout, gap `space.1`.
+2. **Status dot** (optional): 6px circle in the current text color.
+3. **Label**: `typography.label.sm`, one to two words, sentence case.
+
+## Tones and appearances
+
+Every tone comes in two appearances. **Subtle** (default) uses a tinted fill; **Outline** uses a border on a transparent background for lower emphasis in dense tables.
+
+<div className="lm-preview lm-preview--column">
+  <div className="lm-row" style={{ justifyContent: "center" }}>
+    <span className="lm-label-caption" style={{ width: "64px" }}>Subtle</span>
+    <span className="lm-badge lm-badge--neutral">Neutral</span>
+    <span className="lm-badge lm-badge--brand">Brand</span>
+    <span className="lm-badge lm-badge--success">Success</span>
+    <span className="lm-badge lm-badge--warning">Warning</span>
+    <span className="lm-badge lm-badge--danger">Danger</span>
+    <span className="lm-badge lm-badge--info">Info</span>
+  </div>
+  <div className="lm-row" style={{ justifyContent: "center" }}>
+    <span className="lm-label-caption" style={{ width: "64px" }}>Outline</span>
+    <span className="lm-badge lm-badge--outline lm-badge--neutral">Neutral</span>
+    <span className="lm-badge lm-badge--outline lm-badge--brand">Brand</span>
+    <span className="lm-badge lm-badge--outline lm-badge--success">Success</span>
+    <span className="lm-badge lm-badge--outline lm-badge--warning">Warning</span>
+    <span className="lm-badge lm-badge--outline lm-badge--danger">Danger</span>
+    <span className="lm-badge lm-badge--outline lm-badge--info">Info</span>
+  </div>
+</div>
+
+| Tone | Fill (subtle) | Text | Border (outline) |
+|---|---|---|---|
+| Neutral | `color.bg.muted` | `color.text.secondary` | `color.border.strong` |
+| Brand | `color.bg.brand-subtle` | `color.text.brand` | `color.border.brand` |
+| Success | `color.bg.success-subtle` | `color.text.success` | `color.border.success` |
+| Warning | `color.bg.warning-subtle` | `color.text.warning` | `color.border.warning` |
+| Danger | `color.bg.danger-subtle` | `color.text.danger` | `color.border.danger` |
+| Info | `color.bg.info-subtle` | `color.text.info` | `color.border.info` |
+
+## Sizes
+
+<div className="lm-preview">
+  <span className="lm-badge lm-badge--brand lm-badge--sm">Small · 20px</span>
+  <span className="lm-badge lm-badge--brand">Medium · 24px</span>
+</div>
+
+## States
+
+Badges are static and have no hover, focus, or disabled states. To show that the labelled item is disabled, dim the item, not the badge.
+
+## Props
+
+<ResponseField name="tone" type='"neutral" | "brand" | "success" | "warning" | "danger" | "info"' default="neutral">
+  Color and meaning.
+</ResponseField>
+
+<ResponseField name="appearance" type='"subtle" | "outline"' default="subtle">
+  Filled tint or outline.
+</ResponseField>
+
+<ResponseField name="size" type='"sm" | "md"' default="md">
+  Height and padding.
+</ResponseField>
+
+<ResponseField name="dot" type="boolean" default="false">
+  Shows a leading status dot.
+</ResponseField>
+
+<ResponseField name="icon" type="ReactNode">
+  A 12px icon in place of the dot.
+</ResponseField>
+
+<ResponseField name="children" type="ReactNode" required>
+  The label. Keep it to one or two words.
+</ResponseField>
+
+## Examples
+
+<CodeGroup>
+```tsx Status
+import { Badge } from "@lumen/react";
+
+const statusTone = { active: "success", pending: "warning", failed: "danger" } as const;
+
+export function StatusBadge({ status }: { status: keyof typeof statusTone }) {
+  return (
+    <Badge tone={statusTone[status]} dot>
+      {status[0].toUpperCase() + status.slice(1)}
+    </Badge>
+  );
+}
+```
+```tsx Count
+import { Badge } from "@lumen/react";
+
+<h2>
+  Open issues <Badge size="sm" aria-label="12 open issues">12</Badge>
+</h2>
+```
+</CodeGroup>
+
+## Accessibility
+
+- Badges render as `<span>` and are read inline with surrounding text.
+- Color is never the only signal: the label always states the status in words.
+- For counts, add an `aria-label` with context ("12 open issues") when the number alone is ambiguous.
+- All tone pairings meet 4.5:1 text contrast in both modes (for example, brand 5.84:1 light, 7.91:1 dark).
+
+## Usage
+
+<Columns cols={2}>
+  <Check>
+    **Do** map tones consistently across the product: green always means healthy or complete.
+  </Check>
+  <Warning>
+    **Don't** use badges as buttons or links.
+  </Warning>
+  <Check>
+    **Do** keep labels short: "Active", "Beta", "3 new".
+  </Check>
+  <Warning>
+    **Don't** put more than two badges next to one item.
+  </Warning>
+</Columns>
+
+<Info>
+  **Figma:** component set `Badge` with properties `Tone` (Neutral, Brand, Success, Warning, Danger, Info), `Appearance` (Subtle, Outline), `Size` (Sm, Md), and boolean `Dot`.
+</Info>

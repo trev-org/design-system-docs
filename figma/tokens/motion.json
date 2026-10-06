@@ -1,0 +1,71 @@
+{
+  "duration": {
+    "instant": {
+      "$type": "duration",
+      "$value": "50ms",
+      "$description": "Color changes on press."
+    },
+    "fast": {
+      "$type": "duration",
+      "$value": "100ms",
+      "$description": "Hover and focus transitions."
+    },
+    "normal": {
+      "$type": "duration",
+      "$value": "200ms",
+      "$description": "Toggles, small reveals."
+    },
+    "slow": {
+      "$type": "duration",
+      "$value": "300ms",
+      "$description": "Modals and drawers entering."
+    },
+    "slower": {
+      "$type": "duration",
+      "$value": "500ms",
+      "$description": "Large, choreographed transitions."
+    }
+  },
+  "easing": {
+    "standard": {
+      "$type": "cubicBezier",
+      "$value": [
+        0.2,
+        0,
+        0,
+        1
+      ],
+      "$description": "Default for most UI motion."
+    },
+    "enter": {
+      "$type": "cubicBezier",
+      "$value": [
+        0,
+        0,
+        0.2,
+        1
+      ],
+      "$description": "Elements entering the screen (decelerate)."
+    },
+    "exit": {
+      "$type": "cubicBezier",
+      "$value": [
+        0.4,
+        0,
+        1,
+        1
+      ],
+      "$description": "Elements leaving the screen (accelerate)."
+    },
+    "emphasized": {
+      "$type": "cubicBezier",
+      "$value": [
+        0.3,
+        0,
+        0,
+        1.2
+      ],
+      "$description": "Playful overshoot for switches and success moments."
+    }
+  }
+}

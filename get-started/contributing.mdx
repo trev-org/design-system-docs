@@ -1,0 +1,68 @@
+---
+title: "Contributing"
+description: "Propose a new component, change a token, or improve these docs."
+icon: "git-pull-request"
+---
+
+Lumen is maintained by the Design Systems team, but most improvements come from product teams. Here's how to contribute.
+
+## Ways to contribute
+
+<Columns cols={3}>
+  <Card title="Report a bug" icon="bug">
+    Something renders wrong or isn't accessible? Open an issue with a reproduction and screenshots.
+  </Card>
+  <Card title="Change a token" icon="blend">
+    Edit the JSON in `figma/tokens/`, rebuild, and include the contrast report in your pull request.
+  </Card>
+  <Card title="Propose a component" icon="component">
+    Start with an RFC: the problem, three real use cases, and a sketch of the API and Figma variants.
+  </Card>
+</Columns>
+
+## Run the docs locally
+
+<Steps>
+  <Step title="Install the Mintlify CLI">
+    ```bash
+    npm i -g mint
+    ```
+  </Step>
+  <Step title="Start the preview">
+    From the repository root (where `docs.json` lives):
+
+    ```bash
+    mint dev
+    ```
+
+    The site runs at `http://localhost:3000` and reloads on save.
+  </Step>
+  <Step title="Check your work">
+    ```bash
+    node scripts/build-tokens.mjs --check   # tokens and generated files are in sync
+    mint broken-links                       # no broken internal links
+    mint validate                           # strict build
+    ```
+  </Step>
+</Steps>
+
+## Changing tokens
+
+<Warning>
+  Never edit `tokens/lumen.css`, `tokens/lumen.tokens.json`, or anything in `snippets/generated/` by hand. They're overwritten by `scripts/build-tokens.mjs`.
+</Warning>
+
+1. Edit the source JSON in `figma/tokens/`. Semantic tokens must exist in both `semantic/light.json` and `semantic/dark.json`.
+2. Run `node scripts/build-tokens.mjs` and read the contrast report it prints.
+3. Re-sync the Figma library (see [Figma kit](/resources/figma)) so design matches code.
+4. Add an entry to the [changelog](/get-started/changelog).
+
+## Component checklist
+
+A component is ready to ship when it has:
+
+- [ ] Figma component set built from `figma/component-spec.md`, with variant properties matching the React props
+- [ ] Only semantic tokens in its styles (no hex values, no primitives)
+- [ ] Keyboard support and ARIA documented and tested with VoiceOver and NVDA
+- [ ] A docs page with overview, anatomy, variants, sizes, states, props, accessibility, and usage guidance
+- [ ] Visual regression tests in light and dark mode

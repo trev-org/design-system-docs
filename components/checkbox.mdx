@@ -1,0 +1,148 @@
+---
+title: "Checkbox"
+description: "Checkboxes let people select one or more options, or confirm a single statement."
+icon: "square-check"
+tag: "Stable"
+---
+
+Use checkboxes for independent choices where any number can be selected, and for single opt-ins such as accepting terms. For a setting that takes effect immediately, use a [switch](/components/switch).
+
+<div className="lm-preview lm-preview--start">
+  <fieldset className="lm-stack" style={{ border: 0, padding: 0, margin: 0 }}>
+    <legend className="lm-field-label" style={{ marginBottom: "12px" }}>Email notifications</legend>
+    <label className="lm-check"><input type="checkbox" defaultChecked />Product updates</label>
+    <label className="lm-check"><input type="checkbox" />Weekly digest</label>
+    <label className="lm-check"><input type="checkbox" defaultChecked /><span className="lm-check-text">Security alerts<small>Sign-ins from new devices and password changes.</small></span></label>
+  </fieldset>
+</div>
+
+## Anatomy
+
+1. **Box**: 20 × 20px (16px at `sm`), radius `radius.sm`, border `border-width.thin` `color.border.strong`, fill `color.bg.surface`.
+2. **Indicator**: check or dash glyph, `color.text.on-brand`, on a `color.bg.brand` fill.
+3. **Label**: `typography.body.md` (`body.sm` at `sm`), `color.text.primary`. Gap to box: `space.2`.
+4. **Description** (optional): `typography.body.sm`, `color.text.secondary`.
+
+## States
+
+<div className="lm-preview">
+  <div className="lm-state-grid">
+    <div><span className="lm-label-caption">Unchecked</span><label className="lm-check"><input type="checkbox" />Label</label></div>
+    <div><span className="lm-label-caption">Checked</span><label className="lm-check"><input type="checkbox" defaultChecked />Label</label></div>
+    <div><span className="lm-label-caption">Indeterminate</span><label className="lm-check"><input type="checkbox" className="is-indeterminate" aria-checked="mixed" />Label</label></div>
+    <div><span className="lm-label-caption">Focus</span><label className="lm-check"><input type="checkbox" className="is-focus" />Label</label></div>
+    <div><span className="lm-label-caption">Error</span><label className="lm-check"><input type="checkbox" className="is-error" aria-invalid="true" />Label</label></div>
+    <div><span className="lm-label-caption">Disabled</span><label className="lm-check is-disabled"><input type="checkbox" disabled />Label</label></div>
+    <div><span className="lm-label-caption">Disabled checked</span><label className="lm-check is-disabled"><input type="checkbox" disabled defaultChecked />Label</label></div>
+  </div>
+</div>
+
+| State | Box fill | Box border |
+|---|---|---|
+| Unchecked | `color.bg.surface` | `color.border.strong` (hover: `color.text.secondary`) |
+| Checked / indeterminate | `color.bg.brand` | `color.bg.brand` |
+| Error | `color.bg.surface` | `color.border.danger` |
+| Disabled | `color.bg.muted` | `color.border.default` |
+| Focus | unchanged | plus 2px `color.border.focus` outline, 2px offset |
+
+## Sizes
+
+<div className="lm-preview">
+  <label className="lm-check lm-check--sm"><input type="checkbox" defaultChecked />Small (16px)</label>
+  <label className="lm-check"><input type="checkbox" defaultChecked />Medium (20px)</label>
+</div>
+
+## Props
+
+<ResponseField name="label" type="ReactNode" required>
+  Visible label. Clicking it toggles the checkbox.
+</ResponseField>
+
+<ResponseField name="description" type="ReactNode">
+  Secondary text below the label, linked with `aria-describedby`.
+</ResponseField>
+
+<ResponseField name="checked" type='boolean | "indeterminate"'>
+  Controlled state. Use `"indeterminate"` for a parent whose children are partially selected.
+</ResponseField>
+
+<ResponseField name="defaultChecked" type="boolean" default="false">
+  Initial state when uncontrolled.
+</ResponseField>
+
+<ResponseField name="onCheckedChange" type='(checked: boolean | "indeterminate") => void'>
+  Called when the user toggles the checkbox.
+</ResponseField>
+
+<ResponseField name="size" type='"sm" | "md"' default="md">
+  Box and label size.
+</ResponseField>
+
+<ResponseField name="invalid" type="boolean" default="false">
+  Shows the error border and sets `aria-invalid`.
+</ResponseField>
+
+<ResponseField name="disabled" type="boolean" default="false">
+  Disables the checkbox.
+</ResponseField>
+
+## Examples
+
+<CodeGroup>
+```tsx Single
+import { Checkbox } from "@lumen/react";
+
+<Checkbox label="I agree to the terms of service" required />
+```
+```tsx Group with select all
+import { useState } from "react";
+import { Checkbox, CheckboxGroup } from "@lumen/react";
+
+const options = ["Product updates", "Weekly digest", "Security alerts"];
+
+export function NotificationPrefs() {
+  const [selected, setSelected] = useState<string[]>(["Security alerts"]);
+  const all = selected.length === options.length;
+  return (
+    <CheckboxGroup legend="Email notifications" value={selected} onValueChange={setSelected}>
+      <Checkbox
+        label="Select all"
+        checked={all ? true : selected.length ? "indeterminate" : false}
+        onCheckedChange={() => setSelected(all ? [] : options)}
+      />
+      {options.map((o) => (
+        <Checkbox key={o} value={o} label={o} />
+      ))}
+    </CheckboxGroup>
+  );
+}
+```
+</CodeGroup>
+
+## Accessibility
+
+- Built on a native `<input type="checkbox">`, so <kbd>Space</kbd> toggles it and it works in forms without JavaScript.
+- Groups render as a `<fieldset>` with a `<legend>` so the group name is announced.
+- Indeterminate sets `aria-checked="mixed"`.
+- The 20px box sits inside a 24px minimum hit area; the label is also clickable.
+
+## Usage
+
+<Columns cols={2}>
+  <Check>
+    **Do** phrase labels positively: "Send me updates", not "Don't send me updates".
+  </Check>
+  <Warning>
+    **Don't** use a checkbox for mutually exclusive options. Use radio buttons.
+  </Warning>
+  <Check>
+    **Do** list options vertically, one per line.
+  </Check>
+  <Warning>
+    **Don't** use a checkbox to trigger an immediate action. Use a switch.
+  </Warning>
+</Columns>
+
+<Info>
+  **Figma:** component set `Checkbox` with properties `Checked` (False, True, Indeterminate), `State` (Default, Hover, Focus, Error, Disabled), `Size` (Sm, Md), and boolean `Description`.
+</Info>

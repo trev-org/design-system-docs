@@ -1,0 +1,32 @@
+[
+  {
+    "id": "lumen-light",
+    "name": "Light",
+    "group": "Mode",
+    "selectedTokenSets": {
+      "primitives": "source",
+      "typography": "source",
+      "spacing": "source",
+      "radius": "source",
+      "effects": "source",
+      "motion": "source",
+      "breakpoints": "source",
+      "semantic/light": "enabled"
+    }
+  },
+  {
+    "id": "lumen-dark",
+    "name": "Dark",
+    "group": "Mode",
+    "selectedTokenSets": {
+      "primitives": "source",
+      "typography": "source",
+      "spacing": "source",
+      "radius": "source",
+      "effects": "source",
+      "motion": "source",
+      "breakpoints": "source",
+      "semantic/dark": "enabled"
+    }
+  }
+]

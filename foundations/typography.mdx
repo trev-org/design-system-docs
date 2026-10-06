@@ -1,0 +1,65 @@
+---
+title: "Typography"
+description: "Font families, the Lumen type scale, and how to apply text styles."
+icon: "type"
+---
+
+import TypeStyles from "/snippets/generated/type-styles.mdx";
+import TypeFamilies from "/snippets/generated/type-families.mdx";
+import TypeScalePrimitives from "/snippets/generated/type-scale-primitives.mdx";
+
+Lumen pairs **Plus Jakarta Sans** for display and headings with **Inter** for interface text. Both are open source and available on Google Fonts. **JetBrains Mono** sets code and tabular data.
+
+## Type styles
+
+Each style is a composite token (`$type: typography`) that bundles family, size, line height, weight, and letter spacing. In Figma, each one becomes a text style with the same name.
+
+<TypeStyles />
+
+## Applying styles
+
+<CodeGroup>
+```css CSS variables
+.page-title {
+  font: var(--lumen-typography-heading-xl);
+  letter-spacing: var(--lumen-typography-heading-xl-letter-spacing);
+}
+```
+```html Utility classes
+<h1 class="lumen-text-heading-xl">Billing</h1>
+<p class="lumen-text-body-md">Manage your plan and invoices.</p>
+```
+```tsx React
+import { Text, Heading } from "@lumen/react";
+
+<Heading as="h1" size="xl">Billing</Heading>
+<Text size="md" tone="secondary">Manage your plan and invoices.</Text>
+```
+</CodeGroup>
+
+## Primitives
+
+<TypeFamilies />
+
+<TypeScalePrimitives />
+
+<Info>
+  Letter spacing is stored in percent (`-2%`) because that's what Figma expects. The build converts it to `em` for CSS (`-0.02em`).
+</Info>
+
+## Guidelines
+
+<Columns cols={2}>
+  <Check>
+    **Do** use one `heading.xl` per page, then step down through `heading.lg` and `heading.md` without skipping levels.
+  </Check>
+  <Warning>
+    **Don't** set body copy below `body.sm` (14px). Use `caption.md` (12px) only for metadata.
+  </Warning>
+  <Check>
+    **Do** keep line length between 45 and 80 characters for paragraphs.
+  </Check>
+  <Warning>
+    **Don't** use display styles inside product UI. They're for marketing and empty states.
+  </Warning>
+</Columns>

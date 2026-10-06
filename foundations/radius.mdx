@@ -1,0 +1,24 @@
+---
+title: "Radius"
+description: "Corner radius and border width tokens."
+icon: "square-dashed"
+---
+
+import Radius from "/snippets/generated/radius.mdx";
+
+Lumen's corners are gently rounded: soft enough to feel friendly, tight enough to stay precise. Radius grows with component size.
+
+<Radius />
+
+## Nesting rule
+
+When you nest a rounded element inside another, the inner radius should equal the outer radius minus the padding between them. For example, a `radius.xl` (12px) modal with 4px of padding holds a `radius.lg` (8px) element.
+
+<Columns cols={2}>
+  <Check>
+    **Do** use `radius.full` for pills, avatars, and switches.
+  </Check>
+  <Warning>
+    **Don't** mix sharp and rounded corners in the same component.
+  </Warning>
+</Columns>

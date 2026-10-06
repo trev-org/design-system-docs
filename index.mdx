@@ -1,0 +1,96 @@
+---
+title: "Introduction"
+description: "Lumen is a token-driven design system for building calm, accessible product interfaces, in code and in Figma."
+icon: "sparkles"
+mode: "wide"
+---
+
+<div className="lm-hero not-prose">
+  <span className="lm-hero-eyebrow">Lumen Design System · v2.4</span>
+  <h1 className="lm-hero-title">Design with clarity.</h1>
+  <p className="lm-hero-lead">
+    Foundations, accessible React components, and a single token source that flows into
+    CSS, JavaScript, and Figma variables, so design and code never drift apart.
+  </p>
+  <div className="lm-hero-chips">
+    <span className="lm-hero-chip">200+ design tokens</span>
+    <span className="lm-hero-chip">10 components</span>
+    <span className="lm-hero-chip">Light and dark modes</span>
+    <span className="lm-hero-chip">WCAG 2.2 AA</span>
+  </div>
+  <div className="lm-hero-palette" aria-hidden="true">
+    <span style={{ background: "#E0E6FF" }} />
+    <span style={{ background: "#A3B1FC" }} />
+    <span style={{ background: "#7C88F8" }} />
+    <span style={{ background: "#5B63F0" }} />
+    <span style={{ background: "#4845E4" }} />
+    <span style={{ background: "#3B36C9" }} />
+    <span style={{ background: "#2D2D80" }} />
+  </div>
+</div>
+
+## What's inside
+
+Lumen gives product teams a shared vocabulary. Designers pick from the same tokens, text styles, and component variants that engineers import from `@lumen/react`.
+
+<CardGroup cols={2}>
+  <Card title="Get started" icon="rocket" href="/get-started/installation">
+    Install `@lumen/react`, wrap your app in `LumenProvider`, and ship your first screen.
+  </Card>
+  <Card title="Foundations" icon="palette" href="/foundations/overview">
+    Color, typography, spacing, radius, elevation, motion, and breakpoints.
+  </Card>
+  <Card title="Components" icon="component" href="/components/overview">
+    Buttons, inputs, cards, modals and more, with anatomy, states, props, and accessibility notes.
+  </Card>
+  <Card title="Figma kit" icon="pen-tool" href="/resources/figma">
+    Import the DTCG tokens into Figma and build the component library from the spec.
+  </Card>
+</CardGroup>
+
+## A quick look
+
+<div className="lm-preview">
+  <button className="lm-btn lm-btn--primary">Create project</button>
+  <button className="lm-btn lm-btn--secondary">Invite team</button>
+  <span className="lm-badge lm-badge--success"><span className="lm-badge-dot" />Live</span>
+  <span className="lm-badge lm-badge--brand">Beta</span>
+  <label className="lm-switch"><input type="checkbox" role="switch" defaultChecked aria-label="Notifications" /></label>
+  <div className="lm-avatar-group">
+    <span className="lm-avatar lm-avatar--sm lm-avatar--photo">AK</span>
+    <span className="lm-avatar lm-avatar--sm lm-avatar--photo2">MR</span>
+    <span className="lm-avatar lm-avatar--sm">JL</span>
+  </div>
+</div>
+
+```tsx App.tsx
+import { LumenProvider, Button, Badge } from "@lumen/react";
+import "@lumen/tokens/lumen.css";
+
+export default function App() {
+  return (
+    <LumenProvider theme="system">
+      <Button variant="primary">Create project</Button>
+      <Badge tone="success" dot>Live</Badge>
+    </LumenProvider>
+  );
+}
+```
+
+## How Lumen is organized
+
+<Columns cols={3}>
+  <Card title="Tokens" icon="blend">
+    The single source of truth lives in `figma/tokens` as W3C design tokens. A build script turns them into CSS variables and these docs.
+  </Card>
+  <Card title="Components" icon="box">
+    React components consume semantic tokens only, so a theme change never needs a component change.
+  </Card>
+  <Card title="Figma" icon="pen-tool">
+    The same tokens become Figma variables with Light and Dark modes, and the component spec maps every layer to a token.
+  </Card>
+</Columns>
+
+<Tip>
+  New to Lumen? Read the [design principles](/get-started/principles) first. They explain the decisions behind every token and component.
+</Tip>

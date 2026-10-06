@@ -1,0 +1,79 @@
+---
+title: "Components"
+description: "Accessible React components built entirely on Lumen's semantic tokens."
+icon: "component"
+---
+
+Every Lumen component ships from `@lumen/react`, uses semantic tokens only, supports light and dark mode, and has a matching Figma component set whose variant properties mirror the React props.
+
+<Columns cols={2}>
+  <Card title="Button" icon="mouse-pointer-click" href="/components/button">
+    Trigger actions. Four variants, three sizes, loading state.
+  </Card>
+  <Card title="Input" icon="text-cursor-input" href="/components/input">
+    Single-line text entry with label, helper, and error text.
+  </Card>
+  <Card title="Checkbox" icon="square-check" href="/components/checkbox">
+    Multi-select options and opt-ins, with indeterminate state.
+  </Card>
+  <Card title="Switch" icon="toggle-right" href="/components/switch">
+    Instant on/off settings.
+  </Card>
+  <Card title="Card" icon="credit-card" href="/components/card">
+    Group content and actions about one subject.
+  </Card>
+  <Card title="Badge" icon="tag" href="/components/badge">
+    Status and metadata labels in six tones.
+  </Card>
+  <Card title="Avatar" icon="circle-user" href="/components/avatar">
+    People and organizations, with status and groups.
+  </Card>
+  <Card title="Alert" icon="triangle-alert" href="/components/alert">
+    Contextual messages in four tones.
+  </Card>
+  <Card title="Tooltip" icon="message-square" href="/components/tooltip">
+    Short labels for icon buttons and shortcuts.
+  </Card>
+  <Card title="Modal" icon="app-window" href="/components/modal">
+    Focused tasks and confirmations.
+  </Card>
+</Columns>
+
+## Status
+
+| Component | Status | React | Figma | Since |
+|---|---|---|---|---|
+| Button | <Badge color="green" size="sm">Stable</Badge> | `Button` | `Button` | v1.0 |
+| Input | <Badge color="green" size="sm">Stable</Badge> | `Input` | `Input` | v1.0 |
+| Checkbox | <Badge color="green" size="sm">Stable</Badge> | `Checkbox`, `CheckboxGroup` | `Checkbox` | v1.1 |
+| Switch | <Badge color="green" size="sm">Stable</Badge> | `Switch` | `Switch` | v1.1 |
+| Card | <Badge color="green" size="sm">Stable</Badge> | `Card`, `CardGroup` | `Card` | v1.0 |
+| Badge | <Badge color="green" size="sm">Stable</Badge> | `Badge` | `Badge` | v1.0 |
+| Avatar | <Badge color="blue" size="sm">New</Badge> | `Avatar`, `AvatarGroup` | `Avatar` | v2.4 |
+| Alert | <Badge color="blue" size="sm">New</Badge> | `Alert`, `AlertAction` | `Alert` | v2.4 |
+| Tooltip | <Badge color="green" size="sm">Stable</Badge> | `Tooltip` | `Tooltip` | v1.2 |
+| Modal | <Badge color="green" size="sm">Stable</Badge> | `Modal` | `Modal` | v1.2 |
+
+## Every component page includes
+
+<Steps>
+  <Step title="Overview and live preview">
+    What it's for, when to use something else, and a preview rendered with the real tokens.
+  </Step>
+  <Step title="Anatomy, variants, sizes, and states">
+    Each part mapped to the tokens it uses, so design and code match exactly.
+  </Step>
+  <Step title="Props and code examples">
+    The `@lumen/react` API with TypeScript examples.
+  </Step>
+  <Step title="Accessibility and usage">
+    Keyboard behavior, ARIA, contrast, and do and don't guidance.
+  </Step>
+</Steps>
+
+## Shared conventions
+
+- **Sizes** are always `sm` (32px), `md` (40px, default), and `lg` (48px) for controls.
+- **Focus** is always a 2px `color.border.focus` outline with a 2px offset, or the `shadow.focus` halo on text fields.
+- **Disabled** controls use `color.bg.muted` and `color.text.disabled`. Prefer explaining why an action is unavailable over disabling it silently.
+- **Polymorphism:** components that render a single element accept `asChild` to merge their styles onto your own element.

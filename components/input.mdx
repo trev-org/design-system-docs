@@ -1,0 +1,174 @@
+---
+title: "Input"
+description: "Text inputs let people enter and edit a single line of text."
+icon: "text-cursor-input"
+tag: "Stable"
+---
+
+import { IconSearch, IconMail } from "/snippets/lumen-icons.jsx";
+
+Use an input for short, free-form text such as names, emails, and search queries. For multiple lines, use `Textarea`. For a fixed set of options, use `Select`.
+
+<div className="lm-preview">
+  <div className="lm-field">
+    <label className="lm-field-label" htmlFor="demo-email">Work email<span className="lm-req" aria-hidden="true">*</span></label>
+    <div className="lm-input"><IconMail /><input id="demo-email" type="email" placeholder="you@company.com" aria-describedby="demo-email-help" /></div>
+    <span className="lm-field-help" id="demo-email-help">We'll send a confirmation link.</span>
+  </div>
+</div>
+
+## Anatomy
+
+1. **Label**: `typography.label.md`, `color.text.primary`. Always visible; required fields add a `color.text.danger` asterisk.
+2. **Field container**: height 40px, padding X `space.3`, radius `radius.md`, border `border-width.thin` `color.border.strong`, fill `color.bg.surface`, shadow `shadow.xs`.
+3. **Leading icon** (optional): 16px, `color.text.tertiary`.
+4. **Value / placeholder**: `typography.body.md`; value `color.text.primary`, placeholder `color.text.tertiary`.
+5. **Helper or error text**: `typography.caption.md`, `color.text.secondary` (or `color.text.danger` when invalid).
+
+Gaps: label to field `space.1-5` (6px), field to helper `space.1-5` (6px).
+
+## Sizes
+
+<div className="lm-preview lm-preview--column">
+  <div className="lm-stack" style={{ margin: "0 auto" }}>
+    <div className="lm-input lm-input--sm"><input placeholder="Small, 32px" aria-label="Small input" /></div>
+    <div className="lm-input"><input placeholder="Medium, 40px (default)" aria-label="Medium input" /></div>
+    <div className="lm-input lm-input--lg"><input placeholder="Large, 48px" aria-label="Large input" /></div>
+  </div>
+</div>
+
+| Size | Height | Padding X | Text style |
+|---|---|---|---|
+| `sm` | 32px | `space.3` | `body.sm` |
+| `md` | 40px | `space.3` | `body.md` |
+| `lg` | 48px | `space.4` | `body.md` |
+
+## States
+
+<div className="lm-preview">
+  <div className="lm-state-grid" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))" }}>
+    <div><span className="lm-label-caption">Default</span><div className="lm-input" style={{ width: "100%" }}><input placeholder="Placeholder" aria-label="Default" /></div></div>
+    <div><span className="lm-label-caption">Hover</span><div className="lm-input is-hover" style={{ width: "100%" }}><input placeholder="Placeholder" aria-label="Hover" /></div></div>
+    <div><span className="lm-label-caption">Focus</span><div className="lm-input is-focus" style={{ width: "100%" }}><input defaultValue="Ada Lovelace" aria-label="Focus" /></div></div>
+    <div><span className="lm-label-caption">Error</span><div className="lm-input is-error" style={{ width: "100%" }}><input defaultValue="ada@" aria-label="Error" aria-invalid="true" /></div><span className="lm-field-help is-error">Enter a valid email.</span></div>
+    <div><span className="lm-label-caption">Disabled</span><div className="lm-input is-disabled" style={{ width: "100%" }}><input placeholder="Unavailable" aria-label="Disabled" disabled /></div></div>
+    <div><span className="lm-label-caption">With icon</span><div className="lm-input" style={{ width: "100%" }}><IconSearch /><input placeholder="Search…" aria-label="Search" /></div></div>
+  </div>
+</div>
+
+| State | Border | Other |
+|---|---|---|
+| Default | `color.border.strong` | |
+| Hover | `color.text.secondary` | |
+| Focus | `color.border.focus` | `shadow.focus` halo |
+| Error | `color.border.danger` | Helper text becomes `color.text.danger` and is prefixed with an icon |
+| Disabled | `color.border.default` | Fill `color.bg.subtle`, text `color.text.disabled` |
+| Read-only | `color.border.default` | Fill `color.bg.subtle`, text stays `color.text.primary`, still focusable |
+
+## Props
+
+<ResponseField name="label" type="string" required>
+  Visible label. Use `hideLabel` to hide it visually while keeping it for screen readers.
+</ResponseField>
+
+<ResponseField name="size" type='"sm" | "md" | "lg"' default="md">
+  Field height and text size.
+</ResponseField>
+
+<ResponseField name="helperText" type="ReactNode">
+  Guidance shown below the field and linked with `aria-describedby`.
+</ResponseField>
+
+<ResponseField name="error" type="ReactNode">
+  Error message. Sets `aria-invalid="true"` and replaces `helperText` while present.
+</ResponseField>
+
+<ResponseField name="iconStart" type="ReactNode">
+  Decorative icon inside the leading edge of the field.
+</ResponseField>
+
+<ResponseField name="endAdornment" type="ReactNode">
+  Content at the trailing edge, such as a unit ("kg") or a clear button.
+</ResponseField>
+
+<ResponseField name="required" type="boolean" default="false">
+  Adds the asterisk and the native `required` attribute.
+</ResponseField>
+
+<ResponseField name="disabled" type="boolean" default="false">
+  Disables the field.
+</ResponseField>
+
+<ResponseField name="readOnly" type="boolean" default="false">
+  Value can be selected and copied but not changed.
+</ResponseField>
+
+<ResponseField name="hideLabel" type="boolean" default="false">
+  Visually hides the label. Only use when context makes the purpose obvious, such as a search bar.
+</ResponseField>
+
+Also accepts every native `<input>` attribute (`type`, `name`, `value`, `onChange`, `autoComplete`, and so on).
+
+## Examples
+
+<CodeGroup>
+```tsx Basic
+import { Input } from "@lumen/react";
+
+<Input label="Full name" name="name" autoComplete="name" required />
+```
+```tsx Validation
+import { useState } from "react";
+import { Input } from "@lumen/react";
+
+export function EmailField() {
+  const [value, setValue] = useState("");
+  const invalid = value.length > 0 && !value.includes("@");
+  return (
+    <Input
+      label="Work email"
+      type="email"
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+      helperText="We'll send a confirmation link."
+      error={invalid ? "Enter a valid email, like name@company.com." : undefined}
+    />
+  );
+}
+```
+```tsx Search
+import { Input } from "@lumen/react";
+import { SearchIcon } from "@lumen/icons";
+
+<Input label="Search projects" hideLabel type="search" iconStart={<SearchIcon />} placeholder="Search…" />
+```
+</CodeGroup>
+
+## Accessibility
+
+- The label is a real `<label for>`, so clicking it focuses the field and screen readers announce it.
+- Helper and error text are connected with `aria-describedby`; errors also set `aria-invalid="true"`.
+- Placeholder text is **not** a label. It disappears on input and has lower contrast (4.55:1).
+- Use the correct `type` and `autoComplete` so mobile keyboards and password managers work.
+- The field border meets 3:1 non-text contrast (4.55:1 light, 3.74:1 dark).
+
+## Usage
+
+<Columns cols={2}>
+  <Check>
+    **Do** keep labels short and above the field. Put extra detail in helper text.
+  </Check>
+  <Warning>
+    **Don't** use placeholder text as the only label.
+  </Warning>
+  <Check>
+    **Do** size the field to the expected input: a ZIP code field can be narrower than an address field.
+  </Check>
+  <Warning>
+    **Don't** validate on every keystroke. Validate on blur or on submit.
+  </Warning>
+</Columns>
+
+<Info>
+  **Figma:** component set `Input` with properties `Size` (Sm, Md, Lg), `State` (Default, Hover, Focus, Error, Disabled), and booleans `Label`, `Helper text`, `Icon start`.
+</Info>

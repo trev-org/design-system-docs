@@ -1,0 +1,141 @@
+---
+title: "Alert"
+description: "Alerts communicate important, contextual messages without interrupting the user."
+icon: "triangle-alert"
+tag: "New"
+---
+
+import { IconInfo, IconCheckCircle, IconAlert, IconError, IconClose } from "/snippets/lumen-icons.jsx";
+
+Use an alert to tell people about something that affects the page they're on: a system status, the result of an action, or a problem that needs attention. For brief confirmations that disappear on their own, use a `Toast`. For decisions that block progress, use a [modal](/components/modal).
+
+<div className="lm-preview lm-preview--column">
+  <div className="lm-alert lm-alert--warning" role="status">
+    <IconAlert />
+    <div className="lm-alert-content">
+      <span className="lm-alert-title">Your trial ends in 3 days</span>
+      <span className="lm-alert-desc">Add a payment method to keep access to Pro features and your project history.</span>
+      <div className="lm-alert-actions"><span>Add payment method</span><span style={{ color: "var(--lumen-color-text-secondary)" }}>Remind me later</span></div>
+    </div>
+    <button className="lm-close" aria-label="Dismiss"><IconClose /></button>
+  </div>
+</div>
+
+## Anatomy
+
+1. **Container**: horizontal auto layout, padding `space.4`, gap `space.3`, radius `radius.lg`, border `border-width.thin` in the tone's border color, fill in the tone's subtle background.
+2. **Icon**: 20px, tone text color. Each tone has a fixed icon.
+3. **Title**: `typography.label.md`, `color.text.primary`.
+4. **Description**: `typography.body.sm`, `color.text.secondary`. Gap from title `space.1`.
+5. **Actions** (optional): up to two text actions, `typography.label.md`, tone text color. Margin-top `space.2`.
+6. **Dismiss button** (optional): 32px ghost icon button.
+
+## Tones
+
+<div className="lm-preview lm-preview--column">
+  <div className="lm-alert lm-alert--info"><IconInfo /><div className="lm-alert-content"><span className="lm-alert-title">Scheduled maintenance</span><span className="lm-alert-desc">The API will be read-only on Sunday from 02:00 to 03:00 UTC.</span></div></div>
+  <div className="lm-alert lm-alert--success"><IconCheckCircle /><div className="lm-alert-content"><span className="lm-alert-title">Domain verified</span><span className="lm-alert-desc">docs.acme.com is now serving your site over HTTPS.</span></div></div>
+  <div className="lm-alert lm-alert--warning"><IconAlert /><div className="lm-alert-content"><span className="lm-alert-title">Approaching your seat limit</span><span className="lm-alert-desc">You're using 48 of 50 seats.</span></div></div>
+  <div className="lm-alert lm-alert--danger"><IconError /><div className="lm-alert-content"><span className="lm-alert-title">Payment failed</span><span className="lm-alert-desc">We couldn't charge your card ending in 4242. Update it to avoid interruption.</span></div></div>
+</div>
+
+| Tone | Background | Border | Icon and actions | Role |
+|---|---|---|---|---|
+| Info | `color.bg.info-subtle` | `color.border.info` | `color.text.info` | `status` |
+| Success | `color.bg.success-subtle` | `color.border.success` | `color.text.success` | `status` |
+| Warning | `color.bg.warning-subtle` | `color.border.warning` | `color.text.warning` | `status` |
+| Danger | `color.bg.danger-subtle` | `color.border.danger` | `color.text.danger` | `alert` |
+
+## Layouts
+
+| Layout | Description |
+|---|---|
+| `inline` (default) | Sits in the content flow with rounded corners. |
+| `banner` | Full width at the top of a page or panel, no radius, bottom border only. Use for app-wide notices. |
+
+## States
+
+Alerts are static. The dismiss button and action links have their own hover (`color.bg.muted` fill / underline) and focus (2px `color.border.focus` outline) states. Dismissing fades the alert out with `duration.normal` and `easing.exit`.
+
+## Props
+
+<ResponseField name="tone" type='"info" | "success" | "warning" | "danger"' default="info">
+  Meaning, color, icon, and ARIA role.
+</ResponseField>
+
+<ResponseField name="title" type="ReactNode" required>
+  A short summary of the message.
+</ResponseField>
+
+<ResponseField name="children" type="ReactNode">
+  Description. Keep it to one or two sentences.
+</ResponseField>
+
+<ResponseField name="actions" type="ReactNode">
+  Up to two `AlertAction` elements.
+</ResponseField>
+
+<ResponseField name="onDismiss" type="() => void">
+  When set, shows a dismiss button. Persist dismissal yourself if the alert shouldn't return.
+</ResponseField>
+
+<ResponseField name="layout" type='"inline" | "banner"' default="inline">
+  Inline card or full-width banner.
+</ResponseField>
+
+<ResponseField name="icon" type="ReactNode | false">
+  Override the tone's icon, or pass `false` to hide it.
+</ResponseField>
+
+## Example
+
+```tsx
+import { Alert, AlertAction } from "@lumen/react";
+
+export function TrialAlert({ daysLeft, onDismiss }: { daysLeft: number; onDismiss: () => void }) {
+  return (
+    <Alert
+      tone="warning"
+      title={`Your trial ends in ${daysLeft} days`}
+      onDismiss={onDismiss}
+      actions={
+        <>
+          <AlertAction href="/billing">Add payment method</AlertAction>
+          <AlertAction onClick={onDismiss}>Remind me later</AlertAction>
+        </>
+      }
+    >
+      Add a payment method to keep access to Pro features and your project history.
+    </Alert>
+  );
+}
+```
+
+## Accessibility
+
+- Info, success, and warning alerts use `role="status"` (polite). Danger alerts use `role="alert"` (assertive), so use them sparingly.
+- Alerts present on page load aren't announced; that's expected. Alerts inserted after an action are announced automatically.
+- Each tone has a distinct icon, so meaning doesn't rely on color alone.
+- Text contrast on every subtle background is at least 4.84:1 (warning, light mode).
+- The dismiss button has `aria-label="Dismiss"`. After dismissal, focus moves to the next logical element.
+
+## Usage
+
+<Columns cols={2}>
+  <Check>
+    **Do** say what happened and what to do next.
+  </Check>
+  <Warning>
+    **Don't** stack multiple alerts. Combine them or prioritize the most important.
+  </Warning>
+  <Check>
+    **Do** place alerts close to the content they relate to.
+  </Check>
+  <Warning>
+    **Don't** use danger for anything that isn't a real problem.
+  </Warning>
+</Columns>
+
+<Info>
+  **Figma:** component set `Alert` with properties `Tone` (Info, Success, Warning, Danger), `Layout` (Inline, Banner), and booleans `Description`, `Actions`, `Dismissible`.
+</Info>

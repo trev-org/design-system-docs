@@ -1,0 +1,125 @@
+---
+title: "Switch"
+description: "Switches toggle a single setting on or off, taking effect immediately."
+icon: "toggle-right"
+tag: "Stable"
+---
+
+Use a switch for binary settings that apply instantly, like enabling notifications. If the change only applies after the user presses **Save**, use a [checkbox](/components/checkbox) instead.
+
+<div className="lm-preview lm-preview--start">
+  <div className="lm-stack">
+    <label className="lm-switch"><input type="checkbox" role="switch" defaultChecked />Email notifications</label>
+    <label className="lm-switch"><input type="checkbox" role="switch" />Desktop notifications</label>
+    <label className="lm-switch is-disabled"><input type="checkbox" role="switch" disabled />SMS (upgrade required)</label>
+  </div>
+</div>
+
+<Tip>These previews are live. Click a switch to see the `easing.emphasized` thumb transition.</Tip>
+
+## Anatomy
+
+1. **Track**: 36 × 20px, radius `radius.full`. Off: `color.bg.neutral-strong`. On: `color.bg.brand`.
+2. **Thumb**: 16px circle, `color.bg.knob`, shadow `shadow.sm`, inset 2px. Slides with `duration.normal` and `easing.emphasized`.
+3. **Label**: `typography.body.md`, `color.text.primary`, gap `space.3`.
+
+## Sizes
+
+<div className="lm-preview">
+  <label className="lm-switch lm-switch--sm"><input type="checkbox" role="switch" defaultChecked />Small</label>
+  <label className="lm-switch"><input type="checkbox" role="switch" defaultChecked />Medium</label>
+  <label className="lm-switch lm-switch--lg"><input type="checkbox" role="switch" defaultChecked />Large</label>
+</div>
+
+| Size | Track | Thumb | Thumb travel |
+|---|---|---|---|
+| `sm` | 28 × 16px | 12px | 12px |
+| `md` | 36 × 20px | 16px | 16px |
+| `lg` | 44 × 24px | 20px | 20px |
+
+## States
+
+<div className="lm-preview">
+  <div className="lm-state-grid">
+    <div><span className="lm-label-caption">Off</span><label className="lm-switch"><input type="checkbox" role="switch" aria-label="Off" /></label></div>
+    <div><span className="lm-label-caption">On</span><label className="lm-switch"><input type="checkbox" role="switch" defaultChecked aria-label="On" /></label></div>
+    <div><span className="lm-label-caption">Focus</span><label className="lm-switch"><input type="checkbox" role="switch" className="is-focus" aria-label="Focus" /></label></div>
+    <div><span className="lm-label-caption">Disabled off</span><label className="lm-switch is-disabled"><input type="checkbox" role="switch" disabled aria-label="Disabled off" /></label></div>
+    <div><span className="lm-label-caption">Disabled on</span><label className="lm-switch is-disabled"><input type="checkbox" role="switch" disabled defaultChecked aria-label="Disabled on" /></label></div>
+  </div>
+</div>
+
+## Props
+
+<ResponseField name="label" type="ReactNode" required>
+  Describes the setting. Use `hideLabel` only when a visible label sits elsewhere, such as in a table row.
+</ResponseField>
+
+<ResponseField name="checked" type="boolean">
+  Controlled state.
+</ResponseField>
+
+<ResponseField name="defaultChecked" type="boolean" default="false">
+  Initial state when uncontrolled.
+</ResponseField>
+
+<ResponseField name="onCheckedChange" type="(checked: boolean) => void">
+  Called when the user toggles the switch.
+</ResponseField>
+
+<ResponseField name="size" type='"sm" | "md" | "lg"' default="md">
+  Track and thumb size.
+</ResponseField>
+
+<ResponseField name="labelPosition" type='"start" | "end"' default="end">
+  Places the label before or after the track. Use `start` in settings lists so tracks align on the right.
+</ResponseField>
+
+<ResponseField name="disabled" type="boolean" default="false">
+  Disables the switch.
+</ResponseField>
+
+## Example
+
+```tsx
+import { Switch } from "@lumen/react";
+
+export function NotificationSetting({ enabled, onChange }: { enabled: boolean; onChange: (v: boolean) => void }) {
+  return (
+    <Switch
+      label="Email notifications"
+      labelPosition="start"
+      checked={enabled}
+      onCheckedChange={onChange}
+    />
+  );
+}
+```
+
+## Accessibility
+
+- Renders `<input type="checkbox" role="switch">`, so screen readers announce "switch, on" or "switch, off".
+- <kbd>Space</kbd> toggles the switch; <kbd>Tab</kbd> moves focus to it.
+- The off track uses `color.bg.neutral-strong` for 4.55:1 contrast against the surface (3.74:1 in dark mode), so the control is visible without relying on the thumb.
+- Don't change the label when toggled ("On" or "Off"). The state is already announced.
+
+## Usage
+
+<Columns cols={2}>
+  <Check>
+    **Do** apply the change immediately and confirm it subtly, for example with a toast for important settings.
+  </Check>
+  <Warning>
+    **Don't** use a switch inside a form that has a **Submit** button.
+  </Warning>
+  <Check>
+    **Do** write labels as the thing being enabled: "Dark mode", "Auto-save".
+  </Check>
+  <Warning>
+    **Don't** use switches for choices with more than two states.
+  </Warning>
+</Columns>
+
+<Info>
+  **Figma:** component set `Switch` with properties `Checked` (False, True), `State` (Default, Hover, Focus, Disabled), `Size` (Sm, Md, Lg), and boolean `Label`.
+</Info>

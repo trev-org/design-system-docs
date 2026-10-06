@@ -1,0 +1,45 @@
+---
+title: "Design principles"
+description: "Four principles guide every decision in Lumen, from a token value to a component API."
+icon: "compass"
+---
+
+When two good options compete, these principles break the tie. They're ordered: earlier principles win.
+
+<Steps titleSize="h3">
+  <Step title="Clarity over cleverness" icon="eye">
+    Interfaces should explain themselves. Prefer a visible label to an icon-only control, a plain sentence to a clever one, and an obvious layout to a surprising one.
+
+    **In practice:** buttons always have a text label unless space is truly constrained, in which case they need an `aria-label` and a tooltip.
+  </Step>
+  <Step title="Accessible by default" icon="accessibility">
+    Accessibility is a baseline, not a feature. Every semantic color pairing meets WCAG 2.2 AA, every component is keyboard operable, and focus is always visible.
+
+    **In practice:** the token build fails if a text pairing drops below 4.5:1 or a control boundary drops below 3:1.
+  </Step>
+  <Step title="Calm, then emphatic" icon="sun-dim">
+    Most of a screen should be quiet: neutral surfaces, generous spacing, subtle borders. Save brand color and elevation for the one thing that matters most.
+
+    **In practice:** one primary button per view. Use secondary and ghost buttons for everything else.
+  </Step>
+  <Step title="One source of truth" icon="git-merge">
+    Design and code share the same tokens, names, and variants. If a value exists in Figma, it exists in CSS, with the same name.
+
+    **In practice:** Figma variant properties map 1:1 to React props, such as `Variant=Primary` and `variant="primary"`.
+  </Step>
+</Steps>
+
+## Voice and tone
+
+<Columns cols={2}>
+  <Check>
+    **Be direct.** "Delete project" rather than "Are you sure you want to proceed with deletion?"
+  </Check>
+  <Warning>
+    **Avoid jargon and blame.** Write "We couldn't save your changes" rather than "Error 500: invalid payload."
+  </Warning>
+</Columns>
+
+- Use sentence case for all UI text, including buttons and titles.
+- Lead with the verb on actions: **Save changes**, **Invite member**, **Export CSV**.
+- Keep helper text under two lines. If it needs more, link to docs.

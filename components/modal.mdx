@@ -1,0 +1,175 @@
+---
+title: "Modal"
+description: "Modals focus attention on a single task or decision by blocking the rest of the interface."
+icon: "app-window"
+tag: "Stable"
+---
+
+import { IconClose } from "/snippets/lumen-icons.jsx";
+
+Use a modal when the user must complete or dismiss a task before continuing, such as confirming a destructive action or filling in a short form. If the content is long or the user needs to refer to the page behind, use a `Drawer` or a full page.
+
+<div className="lm-preview">
+  <div className="lm-modal-stage">
+    <div className="lm-modal" role="dialog" aria-modal="true" aria-labelledby="demo-modal-title">
+      <div className="lm-modal-header">
+        <h3 className="lm-modal-title" id="demo-modal-title">Delete workspace?</h3>
+        <button className="lm-close" aria-label="Close"><IconClose /></button>
+      </div>
+      <div className="lm-modal-body">
+        This permanently deletes <strong>Acme Marketing</strong>, its 14 projects, and all files. This can't be undone.
+      </div>
+      <div className="lm-modal-footer">
+        <button className="lm-btn lm-btn--secondary">Cancel</button>
+        <button className="lm-btn lm-btn--danger">Delete workspace</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+## Anatomy
+
+1. **Overlay (scrim)**: `color.bg.overlay` at 48% opacity, covers the viewport, layer `z-index.overlay`.
+2. **Container**: fill `color.bg.surface`, radius `radius.xl`, shadow `shadow.xl`, layer `z-index.modal`. In dark mode, adds a `color.border.default` border.
+3. **Header**: title (`typography.heading.md`, `color.text.primary`) and a 32px ghost close button. Padding `space.6` top and sides.
+4. **Body**: `typography.body.md`, `color.text.secondary`. Padding `space.2` top, `space.6` sides and bottom. Scrolls when content overflows.
+5. **Footer**: actions aligned to the end, gap `space.3`, padding `space.4` × `space.6`, top border `color.border.subtle`. Primary action last.
+
+## Sizes
+
+| Size | Max width | Use for |
+|---|---|---|
+| `sm` | 400px | Confirmations |
+| `md` (default) | 560px | Short forms |
+| `lg` | 720px | Complex forms, previews |
+| `fullscreen` | 100% | Mobile, below `breakpoint.sm` (automatic) |
+
+Modals are vertically centered with a minimum `space.6` margin from the viewport edge. The body scrolls if the modal would exceed 85% of the viewport height.
+
+## Variants
+
+| Variant | Footer | When |
+|---|---|---|
+| Default | Secondary **Cancel** + primary action | Forms and general tasks |
+| Destructive | Secondary **Cancel** + danger action | Deleting or other irreversible actions |
+| Passive | Single **Close** or **Done** button | Information the user must acknowledge |
+
+## States and motion
+
+| State | Overlay | Container |
+|---|---|---|
+| Entering | Fade in, `duration.slow`, `easing.enter` | Fade in + scale from 96%, `duration.slow`, `easing.enter` |
+| Open | 48% scrim | Focus trapped inside |
+| Exiting | Fade out, `duration.normal`, `easing.exit` | Fade out + scale to 96%, `duration.normal`, `easing.exit` |
+| Reduced motion | Opacity only, `duration.fast` | Opacity only |
+
+## Props
+
+<ResponseField name="open" type="boolean">
+  Controlled open state.
+</ResponseField>
+
+<ResponseField name="onOpenChange" type="(open: boolean) => void">
+  Called when the modal requests to open or close (close button, <kbd>Esc</kbd>, overlay click).
+</ResponseField>
+
+<ResponseField name="title" type="ReactNode" required>
+  Dialog title, linked with `aria-labelledby`.
+</ResponseField>
+
+<ResponseField name="description" type="ReactNode">
+  Optional summary, linked with `aria-describedby`.
+</ResponseField>
+
+<ResponseField name="size" type='"sm" | "md" | "lg"' default="md">
+  Maximum width.
+</ResponseField>
+
+<ResponseField name="footer" type="ReactNode">
+  Action buttons.
+</ResponseField>
+
+<ResponseField name="dismissible" type="boolean" default="true">
+  When `false`, overlay clicks and <kbd>Esc</kbd> don't close the modal. Use only for flows that must be completed.
+</ResponseField>
+
+<ResponseField name="initialFocus" type="RefObject<HTMLElement>">
+  Element to focus when the modal opens. Defaults to the first focusable element, or the least destructive action in destructive modals.
+</ResponseField>
+
+<ResponseField name="trigger" type="ReactElement">
+  Optional uncontrolled trigger. Focus returns here on close.
+</ResponseField>
+
+## Example
+
+```tsx
+import { useRef, useState } from "react";
+import { Modal, Button } from "@lumen/react";
+
+export function DeleteWorkspace({ name, onDelete }: { name: string; onDelete: () => Promise<void> }) {
+  const [open, setOpen] = useState(false);
+  const [pending, setPending] = useState(false);
+  const cancelRef = useRef<HTMLButtonElement>(null);
+
+  return (
+    <Modal
+      open={open}
+      onOpenChange={setOpen}
+      size="sm"
+      title="Delete workspace?"
+      initialFocus={cancelRef}
+      trigger={<Button variant="danger">Delete workspace</Button>}
+      footer={
+        <>
+          <Button ref={cancelRef} variant="secondary" onClick={() => setOpen(false)}>
+            Cancel
+          </Button>
+          <Button
+            variant="danger"
+            loading={pending}
+            onClick={async () => {
+              setPending(true);
+              await onDelete();
+              setOpen(false);
+            }}
+          >
+            Delete workspace
+          </Button>
+        </>
+      }
+    >
+      This permanently deletes <strong>{name}</strong> and all of its projects. This can't be undone.
+    </Modal>
+  );
+}
+```
+
+## Accessibility
+
+- Renders `role="dialog"` with `aria-modal="true"`, labelled by the title.
+- **Focus management:** on open, focus moves into the modal (to `initialFocus`, or the first focusable element). <kbd>Tab</kbd> and <kbd>Shift</kbd>+<kbd>Tab</kbd> cycle within the modal. On close, focus returns to the trigger.
+- <kbd>Esc</kbd> closes the modal unless `dismissible={false}`.
+- Content behind the modal is made inert (`inert` attribute) so screen readers and pointer events can't reach it, and page scrolling is locked.
+- In destructive modals, initial focus goes to **Cancel**, not the destructive action.
+
+## Usage
+
+<Columns cols={2}>
+  <Check>
+    **Do** use a specific title that states the decision: "Delete workspace?"
+  </Check>
+  <Warning>
+    **Don't** open a modal on page load or without a user action.
+  </Warning>
+  <Check>
+    **Do** label buttons with the outcome: "Delete workspace", not "Yes".
+  </Check>
+  <Warning>
+    **Don't** stack modals on top of modals.
+  </Warning>
+</Columns>
+
+<Info>
+  **Figma:** component set `Modal` with properties `Size` (Sm, Md, Lg), `Variant` (Default, Destructive, Passive), and booleans `Description`, `Footer`, `Close button`. The body is a slot named `Content`. A separate `Modal / Overlay` component holds the scrim.
+</Info>

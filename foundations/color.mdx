@@ -1,0 +1,72 @@
+---
+title: "Color"
+description: "Lumen's palette: primitive scales, semantic aliases for light and dark mode, and usage rules."
+icon: "palette"
+---
+
+import ColorPrimitives from "/snippets/generated/color-primitives.mdx";
+import ColorPrimitivesTable from "/snippets/generated/color-primitives-table.mdx";
+import SemanticBg from "/snippets/generated/color-semantic-bg.mdx";
+import SemanticText from "/snippets/generated/color-semantic-text.mdx";
+import SemanticBorder from "/snippets/generated/color-semantic-border.mdx";
+
+Color in Lumen has two layers. **Primitives** are the raw palette. **Semantic tokens** give those colors a job, such as "surface" or "danger text", and switch values between light and dark mode.
+
+<Note>
+  Every value on this page is generated from `figma/tokens/primitives.json` and `figma/tokens/semantic/*.json` by `scripts/build-tokens.mjs`. Click any swatch to copy its value.
+</Note>
+
+## Primitive palette
+
+**Iris** (`brand`) is Lumen's signature hue: a blue-violet that reads as confident without shouting. **Graphite** (`neutral`) is cool-tinted to sit comfortably next to it. Green, amber, red, and blue carry feedback meaning only.
+
+<ColorPrimitives />
+
+<Accordion title="All primitive values as a table" icon="table">
+  <ColorPrimitivesTable />
+</Accordion>
+
+## Semantic colors
+
+Switch the docs between light and dark mode (top right) to see each semantic swatch change.
+
+<Tabs>
+  <Tab title="Background" icon="square">
+    <SemanticBg />
+  </Tab>
+  <Tab title="Text" icon="type">
+    <SemanticText />
+  </Tab>
+  <Tab title="Border" icon="square-dashed">
+    <SemanticBorder />
+  </Tab>
+</Tabs>
+
+## Usage
+
+<Columns cols={2}>
+  <Check>
+    **Do** use semantic tokens in components: `var(--lumen-color-bg-brand)`, not `var(--lumen-color-brand-600)`.
+  </Check>
+  <Warning>
+    **Don't** use feedback colors decoratively. Red always means danger, green always means success.
+  </Warning>
+  <Check>
+    **Do** keep brand color for the single most important action and for selection states.
+  </Check>
+  <Warning>
+    **Don't** convey meaning with color alone. Pair it with an icon, text, or pattern.
+  </Warning>
+</Columns>
+
+### Color roles at a glance
+
+| Role | Light | Dark | Typical use |
+|---|---|---|---|
+| Canvas and surface | `base.white` | `neutral.950` / `neutral.900` | Page and card backgrounds |
+| Primary text | `neutral.900` | `neutral.50` | Headings, body copy |
+| Brand | `brand.600` | `brand.500` | Primary buttons, links, selection |
+| Danger | `red.600` | `red.600` | Destructive buttons, errors |
+| Focus | `brand.500` | `brand.400` | Focus rings on every interactive element |
+
+See [Accessibility](/foundations/accessibility) for the contrast ratio of every key pairing.

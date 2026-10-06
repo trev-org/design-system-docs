@@ -1,0 +1,93 @@
+---
+title: "Design tokens"
+description: "Token file layout, the DTCG format, naming rules, and the build pipeline."
+icon: "braces"
+---
+
+Lumen's tokens follow the [W3C Design Tokens Community Group format](https://www.designtokens.org/tr/drafts/format/) (DTCG). Every token is an object with a `$value` and a `$type`, and optionally a `$description`.
+
+```json figma/tokens/primitives.json
+{
+  "color": {
+    "brand": {
+      "600": { "$type": "color", "$value": "#4845E4" }
+    }
+  }
+}
+```
+
+## Files
+
+| File | Contents | Token types |
+|---|---|---|
+| `figma/tokens/primitives.json` | Base, brand, neutral, green, amber, red, and blue color scales | `color` |
+| `figma/tokens/semantic/light.json` | Semantic colors for Light mode, as aliases | `color` |
+| `figma/tokens/semantic/dark.json` | Semantic colors for Dark mode, as aliases | `color` |
+| `figma/tokens/typography.json` | Font primitives and composite text styles | `fontFamily`, `fontWeight`, `dimension`, `typography` |
+| `figma/tokens/spacing.json` | 4px spacing scale | `dimension` |
+| `figma/tokens/radius.json` | Corner radii and border widths | `dimension` |
+| `figma/tokens/effects.json` | Shadows and z-index layers | `shadow`, `number` |
+| `figma/tokens/motion.json` | Durations and easing curves | `duration`, `cubicBezier` |
+| `figma/tokens/breakpoints.json` | Responsive breakpoints | `dimension` |
+| `figma/tokens/$metadata.json` | Token set order (Tokens Studio) | — |
+| `figma/tokens/$themes.json` | Light and Dark themes (Tokens Studio) | — |
+
+## Aliases
+
+Semantic tokens reference primitives with curly-brace paths. Composite tokens can reference other tokens in each field.
+
+```json figma/tokens/typography.json
+{
+  "typography": {
+    "heading": {
+      "lg": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.display}",
+          "fontSize": "{font.size.2xl}",
+          "fontWeight": "{font.weight.semibold}",
+          "lineHeight": "{font.line-height.32}",
+          "letterSpacing": "{font.letter-spacing.snug}"
+        }
+      }
+    }
+  }
+}
+```
+
+## Generated outputs
+
+`node scripts/build-tokens.mjs` reads the JSON and writes:
+
+<ResponseField name="tokens/lumen.css" type="CSS">
+  Custom properties for every token. Primitives and dimensions on `:root`; semantic colors on `:root` / `[data-theme="light"]` and `[data-theme="dark"]` / `.dark`; plus `.lumen-text-*` utility classes. Semantic variables reference primitives with `var()`, preserving the alias chain.
+</ResponseField>
+
+<ResponseField name="tokens/lumen.tokens.json" type="JSON">
+  A flat map of fully resolved values keyed by token path, with CSS variable names and, for semantic tokens, both modes and their aliases.
+</ResponseField>
+
+<ResponseField name="snippets/generated/*.mdx" type="MDX">
+  The color, typography, spacing, radius, shadow, motion, breakpoint, and contrast tables in these docs.
+</ResponseField>
+
+The script also prints a WCAG contrast report and exits non-zero if any key pairing fails, or, with `--check`, if generated files are out of date.
+
+## Conversions
+
+| Token type | JSON value | CSS output |
+|---|---|---|
+| `color` | `"#4845E4"` | `#4845E4` |
+| alias | `"{color.brand.600}"` | `var(--lumen-color-brand-600)` |
+| `dimension` (percent letter spacing) | `"-2%"` | `-0.02em` |
+| `fontFamily` | `"Inter"` + fallback in `$extensions` | `Inter, ui-sans-serif, system-ui, …` |
+| `cubicBezier` | `[0.2, 0, 0, 1]` | `cubic-bezier(0.2, 0, 0, 1)` |
+| `shadow` | array of layers | comma-separated `box-shadow` |
+| `typography` | composite | `font` shorthand variable plus `-letter-spacing` variable |
+
+## Naming rules
+
+1. Lowercase, dot-separated paths. Use hyphens within a segment: `bg.brand-hover`.
+2. Primitive color steps are `50` to `950`. Spacing keys are multiples of 4px, with `0-5` for 2px.
+3. Semantic names describe **purpose**, never appearance: `text.danger`, not `text.red`.
+4. Every semantic token must exist in both `light.json` and `dark.json`. The build fails otherwise.

@@ -1,0 +1,205 @@
+{
+  "color": {
+    "bg": {
+      "canvas": {
+        "$type": "color",
+        "$value": "{color.neutral.950}",
+        "$description": "App background behind all surfaces."
+      },
+      "surface": {
+        "$type": "color",
+        "$value": "{color.neutral.900}",
+        "$description": "Cards, modals, popovers and inputs."
+      },
+      "subtle": {
+        "$type": "color",
+        "$value": "{color.neutral.900}",
+        "$description": "Low-emphasis fills: table stripes, sidebars."
+      },
+      "muted": {
+        "$type": "color",
+        "$value": "{color.neutral.800}",
+        "$description": "Hover fill for ghost elements, skeletons."
+      },
+      "emphasis": {
+        "$type": "color",
+        "$value": "{color.neutral.700}",
+        "$description": "Pressed fill for ghost elements."
+      },
+      "inverse": {
+        "$type": "color",
+        "$value": "{color.neutral.50}",
+        "$description": "Tooltips and inverse surfaces."
+      },
+      "neutral-strong": {
+        "$type": "color",
+        "$value": "{color.neutral.500}",
+        "$description": "Unchecked switch tracks, slider rails (meets 3:1)."
+      },
+      "knob": {
+        "$type": "color",
+        "$value": "{color.base.white}",
+        "$description": "Switch thumbs and slider handles."
+      },
+      "overlay": {
+        "$type": "color",
+        "$value": "{color.neutral.950}",
+        "$description": "Modal scrim. Apply at 48% opacity."
+      },
+      "brand": {
+        "$type": "color",
+        "$value": "{color.brand.500}",
+        "$description": "Primary buttons and selected controls."
+      },
+      "brand-hover": {
+        "$type": "color",
+        "$value": "{color.brand.600}",
+        "$description": "Hover state of brand fills."
+      },
+      "brand-active": {
+        "$type": "color",
+        "$value": "{color.brand.700}",
+        "$description": "Pressed state of brand fills."
+      },
+      "brand-subtle": {
+        "$type": "color",
+        "$value": "{color.brand.950}",
+        "$description": "Tinted brand backgrounds: selected rows, badges."
+      },
+      "success-subtle": {
+        "$type": "color",
+        "$value": "{color.green.950}",
+        "$description": "Success alert and badge background."
+      },
+      "warning-subtle": {
+        "$type": "color",
+        "$value": "{color.amber.950}",
+        "$description": "Warning alert and badge background."
+      },
+      "danger": {
+        "$type": "color",
+        "$value": "{color.red.600}",
+        "$description": "Destructive buttons."
+      },
+      "danger-hover": {
+        "$type": "color",
+        "$value": "{color.red.700}",
+        "$description": "Hover state of destructive fills."
+      },
+      "danger-subtle": {
+        "$type": "color",
+        "$value": "{color.red.950}",
+        "$description": "Danger alert and badge background."
+      },
+      "info-subtle": {
+        "$type": "color",
+        "$value": "{color.blue.950}",
+        "$description": "Info alert and badge background."
+      }
+    },
+    "text": {
+      "primary": {
+        "$type": "color",
+        "$value": "{color.neutral.50}",
+        "$description": "Body copy and headings."
+      },
+      "secondary": {
+        "$type": "color",
+        "$value": "{color.neutral.300}",
+        "$description": "Supporting copy, descriptions, helper text."
+      },
+      "tertiary": {
+        "$type": "color",
+        "$value": "{color.neutral.400}",
+        "$description": "Placeholders and metadata."
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": "{color.neutral.600}",
+        "$description": "Text on disabled controls."
+      },
+      "inverse": {
+        "$type": "color",
+        "$value": "{color.neutral.900}",
+        "$description": "Text on inverse surfaces."
+      },
+      "on-brand": {
+        "$type": "color",
+        "$value": "{color.base.white}",
+        "$description": "Text and icons on brand and danger fills."
+      },
+      "brand": {
+        "$type": "color",
+        "$value": "{color.brand.300}",
+        "$description": "Links and brand-colored text."
+      },
+      "success": {
+        "$type": "color",
+        "$value": "{color.green.300}",
+        "$description": "Success messages."
+      },
+      "warning": {
+        "$type": "color",
+        "$value": "{color.amber.300}",
+        "$description": "Warning messages."
+      },
+      "danger": {
+        "$type": "color",
+        "$value": "{color.red.300}",
+        "$description": "Error messages and destructive text."
+      },
+      "info": {
+        "$type": "color",
+        "$value": "{color.blue.300}",
+        "$description": "Informational messages."
+      }
+    },
+    "border": {
+      "subtle": {
+        "$type": "color",
+        "$value": "{color.neutral.800}",
+        "$description": "Dividers inside surfaces."
+      },
+      "default": {
+        "$type": "color",
+        "$value": "{color.neutral.700}",
+        "$description": "Card and container borders."
+      },
+      "strong": {
+        "$type": "color",
+        "$value": "{color.neutral.500}",
+        "$description": "Input, checkbox and switch borders."
+      },
+      "focus": {
+        "$type": "color",
+        "$value": "{color.brand.400}",
+        "$description": "Focus rings."
+      },
+      "brand": {
+        "$type": "color",
+        "$value": "{color.brand.400}",
+        "$description": "Selected and active borders."
+      },
+      "success": {
+        "$type": "color",
+        "$value": "{color.green.400}",
+        "$description": "Success field and alert borders."
+      },
+      "warning": {
+        "$type": "color",
+        "$value": "{color.amber.400}",
+        "$description": "Warning alert borders."
+      },
+      "danger": {
+        "$type": "color",
+        "$value": "{color.red.400}",
+        "$description": "Error field and alert borders."
+      },
+      "info": {
+        "$type": "color",
+        "$value": "{color.blue.400}",
+        "$description": "Info alert borders."
+      }
+    }
+  }
+}

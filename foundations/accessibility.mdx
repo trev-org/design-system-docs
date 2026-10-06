@@ -1,0 +1,42 @@
+---
+title: "Accessibility"
+description: "Contrast guarantees, focus, keyboard support, and motion preferences in Lumen."
+icon: "accessibility"
+---
+
+import Contrast from "/snippets/generated/contrast.mdx";
+
+Lumen targets **WCAG 2.2 Level AA**. The guarantees below hold for every component as long as you use semantic tokens.
+
+## Color contrast
+
+The token build checks these pairings in both modes and fails if any drop below the minimum: 4.5:1 for text, 3:1 for non-text UI such as borders and focus rings (success criterion 1.4.11).
+
+<Contrast />
+
+## Focus
+
+- Every interactive element shows a **2px `color.border.focus` outline with a 2px offset** on `:focus-visible`. Inputs use the `shadow.focus` halo instead, so the outline doesn't collide with the border.
+- Never remove focus styles. If a design calls for it, the design is wrong.
+- Focus order follows reading order. Modals trap focus and return it to the trigger on close.
+
+## Keyboard
+
+| Key | Behavior |
+|---|---|
+| <kbd>Tab</kbd> / <kbd>Shift</kbd>+<kbd>Tab</kbd> | Move between interactive elements |
+| <kbd>Enter</kbd> | Activate buttons and links, submit forms |
+| <kbd>Space</kbd> | Activate buttons, toggle checkboxes and switches |
+| <kbd>Esc</kbd> | Close modals, tooltips, and menus |
+
+## Target size
+
+Interactive targets are at least **24 × 24px** (WCAG 2.5.8). The default `md` size of every control is 40px tall; `sm` controls are 32px.
+
+## Motion
+
+Components honor `prefers-reduced-motion: reduce` by replacing transforms with opacity fades and removing looping animations.
+
+<Tip>
+  Run `mint a11y` on these docs and `node scripts/build-tokens.mjs --check` in CI to catch regressions early.
+</Tip>
