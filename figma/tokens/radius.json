@@ -16,12 +16,12 @@
     },
     "md": {
       "$type": "dimension",
-      "$value": "6px",
+      "$value": "8px",
       "$description": "Buttons, inputs."
     },
     "lg": {
       "$type": "dimension",
-      "$value": "8px",
+      "$value": "12px",
       "$description": "Cards, menus, alerts."
     },
     "xl": {

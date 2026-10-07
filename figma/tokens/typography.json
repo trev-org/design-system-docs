@@ -283,7 +283,7 @@
         "$value": {
           "fontFamily": "{font.family.sans}",
           "fontSize": "{font.size.sm}",
-          "fontWeight": "{font.weight.medium}",
+          "fontWeight": "{font.weight.semibold}",
           "lineHeight": "{font.line-height.20}",
           "letterSpacing": "{font.letter-spacing.normal}"
         },

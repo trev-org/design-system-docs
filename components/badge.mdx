@@ -5,7 +5,7 @@ icon: "tag"
 tag: "Stable"
 ---
 
-Use badges for short, non-interactive metadata, such as a status, a category, or a count. If people can click it to filter or remove it, use a `Tag` or `Chip` instead.
+Use badges for short, non-interactive metadata, such as a status, a category, or a count. If people can click it to filter or remove it, use a [tag](/components/tag) or `Chip` instead.
 
 <div className="lm-preview">
   <span className="lm-badge lm-badge--neutral">Draft</span>
@@ -18,9 +18,9 @@ Use badges for short, non-interactive metadata, such as a status, a category, or
 
 ## Anatomy
 
-1. **Container**: height 24px (20px at `sm`), padding X `space.2` (`space.1-5` at `sm`), radius `radius.full`, horizontal auto layout, gap `space.1`.
+1. **Container**: height 24px (20px at `sm`, 28px at `lg`), padding X `space.2` (`space.1-5` at `sm`, `space.3` at `lg`), radius `radius.full`, horizontal auto layout, gap `space.1` (`space.1-5` at `lg`).
 2. **Status dot** (optional): 6px circle in the current text color.
-3. **Label**: `typography.label.sm`, one to two words, sentence case.
+3. **Label**: `typography.label.sm` (`label.md` at `lg`), one to two words, sentence case.
 
 ## Tones and appearances
 
@@ -61,6 +61,7 @@ Every tone comes in two appearances. **Subtle** (default) uses a tinted fill; **
 <div className="lm-preview">
   <span className="lm-badge lm-badge--brand lm-badge--sm">Small · 20px</span>
   <span className="lm-badge lm-badge--brand">Medium · 24px</span>
+  <span className="lm-badge lm-badge--brand lm-badge--lg">Large · 28px</span>
 </div>
 
 ## States
@@ -77,7 +78,7 @@ Badges are static and have no hover, focus, or disabled states. To show that the
   Filled tint or outline.
 </ResponseField>
 
-<ResponseField name="size" type='"sm" | "md"' default="md">
+<ResponseField name="size" type='"sm" | "md" | "lg"' default="md">
   Height and padding.
 </ResponseField>
 
@@ -123,7 +124,7 @@ import { Badge } from "@lumen/react";
 - Badges render as `<span>` and are read inline with surrounding text.
 - Color is never the only signal: the label always states the status in words.
 - For counts, add an `aria-label` with context ("12 open issues") when the number alone is ambiguous.
-- All tone pairings meet 4.5:1 text contrast in both modes (for example, brand 5.84:1 light, 7.91:1 dark).
+- All tone pairings meet 4.5:1 text contrast in both modes (for example, brand 6.39:1 light, 7.91:1 dark).
 
 ## Usage
 
@@ -143,5 +144,5 @@ import { Badge } from "@lumen/react";
 </Columns>
 
 <Info>
-  **Figma:** component set `Badge` with properties `Tone` (Neutral, Brand, Success, Warning, Danger, Info), `Appearance` (Subtle, Outline), `Size` (Sm, Md), and boolean `Dot`.
+  **Figma:** component set `Badge` with properties `Tone` (Neutral, Brand, Success, Warning, Danger, Info), `Appearance` (Subtle, Outline), `Size` (Sm, Md, Lg), and boolean `Dot`.
 </Info>

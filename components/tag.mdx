@@ -1,0 +1,108 @@
+---
+title: "Tag"
+description: "Tags are interactive labels for filters and selections that people can click or remove."
+icon: "tags"
+tag: "New"
+---
+
+import { IconClose } from "/snippets/lumen-icons.jsx";
+
+Use tags for values that people pick, filter by, or remove, such as active filters or selected recipients. Unlike a [badge](/components/badge), a tag can be removed or clicked. For static status labels, use a badge.
+
+<div className="lm-preview">
+  <span className="lm-tag lm-tag--neutral">Design<button className="lm-tag-remove" aria-label="Remove Design"><IconClose /></button></span>
+  <span className="lm-tag lm-tag--brand">In progress<button className="lm-tag-remove" aria-label="Remove In progress"><IconClose /></button></span>
+  <span className="lm-tag lm-tag--neutral lm-tag--sm">Small<button className="lm-tag-remove" aria-label="Remove Small"><IconClose /></button></span>
+</div>
+
+## Anatomy
+
+1. **Container**: height 32px (24px at `sm`), padding left `space.3` and right `space.2` (`space.2` and `space.1-5` at `sm`), radius `radius.md`, horizontal auto layout, gap `space.1`.
+2. **Leading icon** (optional): swappable icon before the label.
+3. **Label**: `typography.label.md` (`label.sm` at `sm`), sentence case.
+4. **Remove button** (optional, shown by default): 20px (16px at `sm`) hit area with radius `radius.sm`, holding a 14px (12px at `sm`) close icon in `color.text.secondary`.
+
+## Tones
+
+<div className="lm-preview">
+  <span className="lm-tag lm-tag--neutral">Neutral<button className="lm-tag-remove" aria-label="Remove Neutral"><IconClose /></button></span>
+  <span className="lm-tag lm-tag--brand">Brand<button className="lm-tag-remove" aria-label="Remove Brand"><IconClose /></button></span>
+</div>
+
+| Tone | Fill | Label | Hover fill | Hover border | Remove button hover fill |
+|---|---|---|---|---|---|
+| Neutral | `color.bg.muted` | `color.text.primary` | `color.bg.emphasis` | `color.border.strong` | `color.bg.muted` |
+| Brand | `color.bg.brand-subtle` | `color.text.brand` | `color.bg.brand-subtle` | `color.border.brand` | `color.bg.surface` |
+
+## Sizes
+
+<div className="lm-preview">
+  <span className="lm-tag lm-tag--neutral lm-tag--sm">Small · 24px<button className="lm-tag-remove" aria-label="Remove Small"><IconClose /></button></span>
+  <span className="lm-tag lm-tag--neutral">Medium · 32px<button className="lm-tag-remove" aria-label="Remove Medium"><IconClose /></button></span>
+</div>
+
+| Size | Height | Padding (left × right) | Gap | Text style | Remove icon |
+|---|---|---|---|---|---|
+| `sm` | 24px | `space.2` × `space.1-5` | `space.1` | `label.sm` | 12px |
+| `md` (default) | 32px | `space.3` × `space.2` | `space.1` | `label.md` | 14px |
+
+## States
+
+<div className="lm-preview">
+  <div className="lm-state-grid">
+    <div><span className="lm-label-caption">Default</span><span className="lm-tag lm-tag--neutral">Tag<button className="lm-tag-remove" aria-label="Remove Tag"><IconClose /></button></span></div>
+    <div><span className="lm-label-caption">Hover</span><span className="lm-tag lm-tag--neutral is-hover">Tag<button className="lm-tag-remove" aria-label="Remove Tag"><IconClose /></button></span></div>
+    <div><span className="lm-label-caption">Disabled</span><span className="lm-tag lm-tag--neutral is-disabled">Tag<button className="lm-tag-remove" aria-label="Remove Tag" disabled><IconClose /></button></span></div>
+  </div>
+</div>
+
+| State | Change |
+|---|---|
+| Hover | Adds a `border-width.thin` border and the tone's hover fill (see [Tones](#tones)) |
+| Disabled | Fill `color.bg.subtle`, label and remove icon `color.text.disabled` |
+
+## Props
+
+<ResponseField name="tone" type='"neutral" | "brand"' default="neutral">
+  Color of the tag. Maps to the Figma property `Tone`.
+</ResponseField>
+
+<ResponseField name="size" type='"sm" | "md"' default="md">
+  Height, padding, and text size. Maps to the Figma property `Size`.
+</ResponseField>
+
+<ResponseField name="removable" type="boolean" default="true">
+  Shows the remove button. Maps to the Figma property `Removable`.
+</ResponseField>
+
+<ResponseField name="leadingIcon" type="boolean" default="false">
+  Shows an icon before the label. Maps to the Figma property `Leading icon`.
+</ResponseField>
+
+<ResponseField name="disabled" type="boolean" default="false">
+  Prevents interaction. Maps to the `Disabled` value of the Figma property `State`.
+</ResponseField>
+
+<ResponseField name="children" type="ReactNode" required>
+  The label. Maps to the Figma text property `Label`.
+</ResponseField>
+
+## Accessibility
+
+- The remove button needs an `aria-label` that names the tag it removes ("Remove Design"), not just "Remove".
+- Color is never the only signal: the label always states the value in words.
+
+## Usage
+
+<Columns cols={2}>
+  <Check>
+    **Do** use tags for values people can remove or click, such as active filters.
+  </Check>
+  <Warning>
+    **Don't** use tags for static status. Use a [badge](/components/badge) instead.
+  </Warning>
+</Columns>
+
+<Info>
+  **Figma:** component set `Tag` with properties `Tone` (Neutral, Brand), `Size` (Sm, Md), `State` (Default, Hover, Disabled), booleans `Removable` and `Leading icon`, text property `Label`, and instance swap `Icon`.
+</Info>

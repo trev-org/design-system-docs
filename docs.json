@@ -125,7 +125,7 @@
           },
           {
             "group": "Data display",
-            "pages": ["components/card", "components/badge", "components/avatar"]
+            "pages": ["components/card", "components/badge", "components/tag", "components/avatar"]
           },
           {
             "group": "Feedback and overlays",

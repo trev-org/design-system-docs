@@ -33,22 +33,22 @@
     },
     "color.brand.400": {
       "type": "color",
-      "value": "#7C88F8",
+      "value": "#8B7CF6",
       "cssVar": "--lumen-color-brand-400"
     },
     "color.brand.500": {
       "type": "color",
-      "value": "#5B63F0",
+      "value": "#6D4FEF",
       "cssVar": "--lumen-color-brand-500"
     },
     "color.brand.600": {
       "type": "color",
-      "value": "#4845E4",
+      "value": "#5A35DB",
       "cssVar": "--lumen-color-brand-600"
     },
     "color.brand.700": {
       "type": "color",
-      "value": "#3B36C9",
+      "value": "#4A28B8",
       "cssVar": "--lumen-color-brand-700"
     },
     "color.brand.800": {
@@ -617,7 +617,7 @@
       "value": {
         "fontFamily": "Inter",
         "fontSize": "14px",
-        "fontWeight": 500,
+        "fontWeight": 600,
         "lineHeight": "20px",
         "letterSpacing": "0%"
       },
@@ -748,12 +748,12 @@
     },
     "radius.md": {
       "type": "dimension",
-      "value": "6px",
+      "value": "8px",
       "cssVar": "--lumen-radius-md"
     },
     "radius.lg": {
       "type": "dimension",
-      "value": "8px",
+      "value": "12px",
       "cssVar": "--lumen-radius-lg"
     },
     "radius.xl": {
@@ -896,11 +896,11 @@
       "type": "shadow",
       "value": [
         {
-          "color": "#5B63F059",
+          "color": "#6D4FEF66",
           "offsetX": "0px",
           "offsetY": "0px",
           "blur": "0px",
-          "spread": "3px"
+          "spread": "4px"
         }
       ],
       "cssVar": "--lumen-shadow-focus"
@@ -1122,8 +1122,8 @@
     },
     "color.bg.brand": {
       "type": "color",
-      "light": "#4845E4",
-      "dark": "#5B63F0",
+      "light": "#5A35DB",
+      "dark": "#6D4FEF",
       "alias": {
         "light": "{color.brand.600}",
         "dark": "{color.brand.500}"
@@ -1132,8 +1132,8 @@
     },
     "color.bg.brand-hover": {
       "type": "color",
-      "light": "#3B36C9",
-      "dark": "#4845E4",
+      "light": "#4A28B8",
+      "dark": "#5A35DB",
       "alias": {
         "light": "{color.brand.700}",
         "dark": "{color.brand.600}"
@@ -1143,7 +1143,7 @@
     "color.bg.brand-active": {
       "type": "color",
       "light": "#322FA2",
-      "dark": "#3B36C9",
+      "dark": "#4A28B8",
       "alias": {
         "light": "{color.brand.800}",
         "dark": "{color.brand.700}"
@@ -1179,6 +1179,26 @@
         "dark": "{color.amber.950}"
       },
       "cssVar": "--lumen-color-bg-warning-subtle"
+    },
+    "color.bg.warning": {
+      "type": "color",
+      "light": "#F59E0B",
+      "dark": "#FBBF24",
+      "alias": {
+        "light": "{color.amber.500}",
+        "dark": "{color.amber.400}"
+      },
+      "cssVar": "--lumen-color-bg-warning"
+    },
+    "color.bg.warning-hover": {
+      "type": "color",
+      "light": "#D97706",
+      "dark": "#F59E0B",
+      "alias": {
+        "light": "{color.amber.600}",
+        "dark": "{color.amber.500}"
+      },
+      "cssVar": "--lumen-color-bg-warning-hover"
     },
     "color.bg.danger": {
       "type": "color",
@@ -1280,9 +1300,19 @@
       },
       "cssVar": "--lumen-color-text-on-brand"
     },
+    "color.text.on-warning": {
+      "type": "color",
+      "light": "#0E1016",
+      "dark": "#0E1016",
+      "alias": {
+        "light": "{color.neutral.950}",
+        "dark": "{color.neutral.950}"
+      },
+      "cssVar": "--lumen-color-text-on-warning"
+    },
     "color.text.brand": {
       "type": "color",
-      "light": "#4845E4",
+      "light": "#5A35DB",
       "dark": "#A3B1FC",
       "alias": {
         "light": "{color.brand.600}",
@@ -1362,8 +1392,8 @@
     },
     "color.border.focus": {
       "type": "color",
-      "light": "#5B63F0",
-      "dark": "#7C88F8",
+      "light": "#6D4FEF",
+      "dark": "#8B7CF6",
       "alias": {
         "light": "{color.brand.500}",
         "dark": "{color.brand.400}"
@@ -1372,8 +1402,8 @@
     },
     "color.border.brand": {
       "type": "color",
-      "light": "#4845E4",
-      "dark": "#7C88F8",
+      "light": "#5A35DB",
+      "dark": "#8B7CF6",
       "alias": {
         "light": "{color.brand.600}",
         "dark": "{color.brand.400}"

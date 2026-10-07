@@ -43,7 +43,7 @@ Create one text style per composite token, named with slashes, with every proper
 | `body/md` | Inter | 16 / 24 | Regular (400) | 0% |
 | `body/sm` | Inter | 14 / 20 | Regular (400) | 0% |
 | `label/lg` | Inter | 16 / 24 | Medium (500) | 0% |
-| `label/md` | Inter | 14 / 20 | Medium (500) | 0% |
+| `label/md` | Inter | 14 / 20 | Semibold (600) | 0% |
 | `label/sm` | Inter | 12 / 16 | Medium (500) | 1% |
 | `caption/md` | Inter | 12 / 16 | Regular (400) | 1% |
 | `code/md` | JetBrains Mono | 14 / 20 | Regular (400) | 0% |
@@ -57,7 +57,7 @@ Create one text style per composite token, named with slashes, with every proper
 | `shadow/md` | 0 4 6 -1 `#0E10161A`; 0 2 4 -2 `#0E10160F` |
 | `shadow/lg` | 0 10 15 -3 `#0E10161A`; 0 4 6 -4 `#0E10160D` |
 | `shadow/xl` | 0 20 25 -5 `#0E10161F`; 0 8 10 -6 `#0E101614` |
-| `shadow/focus` | 0 0 0 3 `#5B63F059` |
+| `shadow/focus` | 0 0 0 4 `#6D4FEF66` |
 
 ### 1.4 Focus ring
 
@@ -86,7 +86,7 @@ Base components that shouldn't be used directly start with `.` (e.g. `.Focus rin
 
 | Property | Type | Values | Default |
 |---|---|---|---|
-| `Variant` | Variant | `Primary`, `Secondary`, `Ghost`, `Danger` | `Secondary` |
+| `Variant` | Variant | `Primary`, `Secondary`, `Ghost`, `Danger`, `Warning` | `Secondary` |
 | `Size` | Variant | `Sm`, `Md`, `Lg` | `Md` |
 | `State` | Variant | `Default`, `Hover`, `Focus`, `Pressed`, `Disabled`, `Loading` | `Default` |
 | `Icon start` | Boolean | — | false |
@@ -95,7 +95,7 @@ Base components that shouldn't be used directly start with `.` (e.g. `.Focus rin
 | `Label` | Text | "Button" | — |
 | `Start icon` / `End icon` | Instance swap | `Icon / *` | `Icon / plus`, `Icon / arrow-right` |
 
-Total variants: 4 × 3 × 6 × 2 = 144.
+Total variants: 5 × 3 × 6 × 2 = 180.
 
 **Layers and auto layout**
 
@@ -116,6 +116,7 @@ Total variants: 4 × 3 × 6 × 2 = 144.
 | Secondary | `color/bg/surface` | `color/bg/subtle` | `color/bg/muted` | `color/border/strong` | `color/text/primary` |
 | Ghost | none | `color/bg/muted` | `color/bg/emphasis` | none | `color/text/primary` |
 | Danger | `color/bg/danger` | `color/bg/danger-hover` | `color/bg/danger-hover` | none | `color/text/on-brand` |
+| Warning | `color/bg/warning` | `color/bg/warning-hover` | `color/bg/warning-hover` | none | `color/text/on-warning` |
 | *Any* Disabled | `color/bg/muted` (Ghost: none) | — | — | none | `color/text/disabled` |
 
 Focus = Default fill + `.Focus ring`. Loading = Default fill, label text "Saving…", spinner visible.
@@ -127,7 +128,7 @@ Focus = Default fill + `.Focus ring`. Loading = Default fill, label text "Saving
 | Property | Type | Values |
 |---|---|---|
 | `Size` | Variant | `Sm`, `Md`, `Lg` |
-| `State` | Variant | `Default`, `Hover`, `Focus`, `Error`, `Disabled` |
+| `State` | Variant | `Default`, `Hover`, `Focus`, `Error`, `Disabled`, `Read-only` |
 | `Filled` | Variant | `False` (placeholder), `True` (value) |
 | `Label` | Boolean | default true |
 | `Helper text` | Boolean | default true |
@@ -150,6 +151,7 @@ Focus = Default fill + `.Focus ring`. Loading = Default fill, label text "Saving
 | Focus | `color/border/focus` | `color/bg/surface` | `shadow/focus` | `color/text/secondary` |
 | Error | `color/border/danger` | `color/bg/surface` | `shadow/xs` | `color/text/danger` (+ 12px error icon) |
 | Disabled | `color/border/default` | `color/bg/subtle` | none | `color/text/disabled`; text fill `color/text/disabled` |
+| Read-only | `color/border/default` | `color/bg/subtle` | none | `color/text/secondary`; text fill `color/text/primary` |
 
 ### 3.3 Checkbox
 
@@ -243,15 +245,15 @@ Disabled track fill: False `color/bg/emphasis`, True `color/brand/200` (Light) /
 |---|---|---|
 | `Tone` | Variant | `Neutral`, `Brand`, `Success`, `Warning`, `Danger`, `Info` |
 | `Appearance` | Variant | `Subtle`, `Outline` |
-| `Size` | Variant | `Sm`, `Md` |
+| `Size` | Variant | `Sm`, `Md`, `Lg` |
 | `Dot` | Boolean | default false |
 | `Label` | Text | "Badge" |
 
 | Layer | Auto layout / size | Bindings |
 |---|---|---|
-| `Badge` (root) | Horizontal · padding X `space/2` (Sm `space/1-5`) · gap `space/1` · center · hug × fixed 24 (Sm 20) | Radius `radius/full`; stroke `border-width/thin` (Outline only) |
+| `Badge` (root) | Horizontal · padding X `space/2` (Sm `space/1-5`, Lg `space/3`) · gap `space/1` (Lg `space/1-5`) · center · hug × fixed 24 (Sm 20, Lg 28) | Radius `radius/full`; stroke `border-width/thin` (Outline only) |
 | `Dot` | 6×6 ellipse | Fill = label color |
-| `Label` | Hug | `label/sm` |
+| `Label` | Hug | `label/sm` (Lg `label/md`) |
 
 | Tone | Subtle fill | Label / dot | Outline stroke |
 |---|---|---|---|
@@ -296,7 +298,7 @@ Also build `Avatar group`: horizontal auto layout, gap -8 (the negative of `spac
 | `Layout` | Variant | `Inline`, `Banner` |
 | `Description` | Boolean | default true |
 | `Actions` | Boolean | default false |
-| `Dismissible` | Boolean | default false |
+| `Closable` | Boolean | default false |
 
 | Layer | Auto layout / size | Bindings |
 |---|---|---|
