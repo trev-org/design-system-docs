@@ -17,6 +17,16 @@ Use a switch for binary settings that apply instantly, like enabling notificatio
 
 <Tip>These previews are live. Click a switch to see the `easing.emphasized` thumb transition.</Tip>
 
+## Platform availability
+
+| Platform | Status | Component | Package |
+|---|---|---|---|
+| React | <Badge color="green" size="sm">Stable</Badge> | `Switch` | `@lumen/react` |
+| Android | <Badge color="green" size="sm">Stable</Badge> | `LumenSwitch` | `com.lumen:compose` |
+| iOS | <Badge color="green" size="sm">Stable</Badge> | `LumenToggle` | `LumenUI` (Swift Package) |
+
+iOS wraps the native `Toggle`, so it is named `LumenToggle`. Props and states match the other platforms.
+
 ## Anatomy
 
 1. **Track**: 36 × 20px, radius `radius.full`. Off: `color.bg.neutral-strong`. On: `color.bg.brand`.

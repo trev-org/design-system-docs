@@ -27,6 +27,16 @@ Use a modal when the user must complete or dismiss a task before continuing, suc
   </div>
 </div>
 
+## Platform availability
+
+| Platform | Status | Component | Package |
+|---|---|---|---|
+| React | <Badge color="green" size="sm">Stable</Badge> | `Modal` | `@lumen/react` |
+| Android | <Badge color="green" size="sm">Stable</Badge> | `LumenDialog` | `com.lumen:compose` |
+| iOS | <Badge color="orange" size="sm">Beta</Badge> | `LumenSheet` | `LumenUI` (Swift Package) |
+
+Android uses Material dialog behavior; iOS presents the modal as a sheet. The `destructive` variant is in beta on iOS.
+
 ## Anatomy
 
 1. **Overlay (scrim)**: `color.bg.overlay` at 48% opacity, covers the viewport, layer `z-index.overlay`.
