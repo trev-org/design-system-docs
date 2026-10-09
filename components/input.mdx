@@ -17,6 +17,16 @@ Use an input for short, free-form text such as names, emails, and search queries
   </div>
 </div>
 
+## Platform availability
+
+| Platform | Status | Component | Package |
+|---|---|---|---|
+| React | <Badge color="green" size="sm">Stable</Badge> | `Input` | `@lumen/react` |
+| Android | <Badge color="green" size="sm">Stable</Badge> | `LumenTextField` | `com.lumen:compose` |
+| iOS | <Badge color="orange" size="sm">Beta</Badge> | `LumenTextField` | `LumenUI` (Swift Package) |
+
+On iOS, `size="sm"` and the error icon are still in beta. The API may change before stable.
+
 ## Anatomy
 
 1. **Label**: `typography.label.md`, `color.text.primary`. Always visible; required fields add a `color.text.danger` asterisk.

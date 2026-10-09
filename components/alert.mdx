@@ -21,6 +21,16 @@ Use an alert to tell people about something that affects the page they're on: a 
   </div>
 </div>
 
+## Platform availability
+
+| Platform | Status | Component | Package |
+|---|---|---|---|
+| React | <Badge color="green" size="sm">Stable</Badge> | `Alert` | `@lumen/react` |
+| Android | <Badge color="orange" size="sm">Beta</Badge> | `LumenAlert` | `com.lumen:compose` |
+| iOS | <Badge color="gray" size="sm">Planned</Badge> | `LumenAlert` | `LumenUI` (Swift Package) |
+
+Not yet available on iOS. Until it ships, use a native inline message styled with Lumen tokens.
+
 ## Anatomy
 
 1. **Container**: horizontal auto layout, padding `space.4`, gap `space.3`, radius `radius.lg`, border `border-width.thin` in the tone's border color, fill in the tone's subtle background.

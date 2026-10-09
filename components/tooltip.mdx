@@ -20,6 +20,16 @@ Use a tooltip to name an icon-only button or reveal a keyboard shortcut. Tooltip
   </div>
 </div>
 
+## Platform availability
+
+| Platform | Status | Component | Package |
+|---|---|---|---|
+| React | <Badge color="green" size="sm">Stable</Badge> | `Tooltip` | `@lumen/react` |
+| Android | <Badge color="orange" size="sm">Beta</Badge> | `LumenTooltip` | `com.lumen:compose` |
+| iOS | <Badge color="red" size="sm">Not planned</Badge> | — | — |
+
+iOS has no hover, so Lumen does not ship a tooltip there. Use an accessibility label on icon buttons, or a popover for longer help.
+
 ## Anatomy
 
 1. **Container**: fill `color.bg.inverse`, radius `radius.md`, padding `space.1-5` × `space.2`, shadow `shadow.lg`, max width 240px, layer `z-index.tooltip`.
