@@ -32,19 +32,19 @@
       },
       "400": {
         "$type": "color",
-        "$value": "#7C88F8"
+        "$value": "#8B7CF6"
       },
       "500": {
         "$type": "color",
-        "$value": "#5B63F0"
+        "$value": "#6D4FEF"
       },
       "600": {
         "$type": "color",
-        "$value": "#4845E4"
+        "$value": "#5A35DB"
       },
       "700": {
         "$type": "color",
-        "$value": "#3B36C9"
+        "$value": "#4A28B8"
       },
       "800": {
         "$type": "color",

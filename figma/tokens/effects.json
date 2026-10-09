@@ -110,14 +110,14 @@
       "$type": "shadow",
       "$value": [
         {
-          "color": "#5B63F059",
+          "color": "#6D4FEF66",
           "offsetX": "0px",
           "offsetY": "0px",
           "blur": "0px",
-          "spread": "3px"
+          "spread": "4px"
         }
       ],
-      "$description": "Focus ring halo (brand.500 at 35%)."
+      "$description": "Focus ring halo (brand.500 at 40%)."
     }
   },
   "z-index": {

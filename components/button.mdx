@@ -91,6 +91,16 @@ import { Button } from "@lumen/react";
     | Fill | `color.bg.danger` → hover `color.bg.danger-hover` |
     | Label and icon | `color.text.on-brand` |
   </Tab>
+  <Tab title="Warning">
+    Actions that are risky but reversible.
+
+    <div className="lm-preview"><button className="lm-btn lm-btn--warning">Pause syncing</button></div>
+
+    | Layer | Token |
+    |---|---|
+    | Fill | `color.bg.warning` → hover and pressed `color.bg.warning-hover` |
+    | Label and icon | `color.text.on-warning` |
+  </Tab>
 </Tabs>
 
 ## Sizes
@@ -133,7 +143,7 @@ Icon-only buttons are square (32, 40, or 48px) and **require** an `aria-label`.
 
 ## Props
 
-<ResponseField name="variant" type='"primary" | "secondary" | "ghost" | "danger"' default="secondary">
+<ResponseField name="variant" type='"primary" | "secondary" | "ghost" | "danger" | "warning"' default="secondary">
   Visual emphasis of the button. Maps to the Figma property `Variant`.
 </ResponseField>
 
@@ -235,7 +245,7 @@ import { Button } from "@lumen/react";
 - `loading` sets `aria-busy="true"` and announces the new label through an `aria-live="polite"` region. The button stays focusable so focus isn't lost.
 - `disabled` uses the native attribute. If users need to discover *why* an action is unavailable, use `aria-disabled="true"` with a [tooltip](/components/tooltip) instead.
 - Icon-only buttons need an `aria-label` that describes the action ("Delete row"), not the icon ("Trash").
-- Label contrast: 6.47:1 on `color.bg.brand` in light mode, 4.68:1 in dark mode. Danger label: 4.83:1.
+- Label contrast: 7.08:1 on `color.bg.brand` in light mode, 5.23:1 in dark mode. Danger label: 4.83:1.
 
 ## Usage
 
@@ -261,5 +271,5 @@ import { Button } from "@lumen/react";
 </Columns>
 
 <Info>
-  **Figma:** component set `Button` with properties `Variant` (Primary, Secondary, Ghost, Danger), `Size` (Sm, Md, Lg), `State` (Default, Hover, Focus, Pressed, Disabled, Loading), and booleans `Icon start`, `Icon end`, `Icon only`. See `figma/component-spec.md`.
+  **Figma:** component set `Button` with properties `Variant` (Primary, Secondary, Ghost, Danger, Warning), `Size` (Sm, Md, Lg), `State` (Default, Hover, Focus, Pressed, Disabled, Loading), and booleans `Icon start`, `Icon end`, `Icon only`. See `figma/component-spec.md`.
 </Info>

@@ -8,10 +8,10 @@
   --lumen-color-brand-100: #E0E6FF;
   --lumen-color-brand-200: #C7D1FE;
   --lumen-color-brand-300: #A3B1FC;
-  --lumen-color-brand-400: #7C88F8;
-  --lumen-color-brand-500: #5B63F0;
-  --lumen-color-brand-600: #4845E4;
-  --lumen-color-brand-700: #3B36C9;
+  --lumen-color-brand-400: #8B7CF6;
+  --lumen-color-brand-500: #6D4FEF;
+  --lumen-color-brand-600: #5A35DB;
+  --lumen-color-brand-700: #4A28B8;
   --lumen-color-brand-800: #322FA2;
   --lumen-color-brand-900: #2D2D80;
   --lumen-color-brand-950: #1B1A4B;
@@ -121,8 +121,8 @@
   --lumen-radius-none: 0px;
   --lumen-radius-xs: 2px;
   --lumen-radius-sm: 4px;
-  --lumen-radius-md: 6px;
-  --lumen-radius-lg: 8px;
+  --lumen-radius-md: 8px;
+  --lumen-radius-lg: 12px;
   --lumen-radius-xl: 12px;
   --lumen-radius-2xl: 16px;
   --lumen-radius-full: 9999px;
@@ -136,7 +136,7 @@
   --lumen-shadow-md: 0px 4px 6px -1px #0E10161A, 0px 2px 4px -2px #0E10160F;
   --lumen-shadow-lg: 0px 10px 15px -3px #0E10161A, 0px 4px 6px -4px #0E10160D;
   --lumen-shadow-xl: 0px 20px 25px -5px #0E10161F, 0px 8px 10px -6px #0E101614;
-  --lumen-shadow-focus: 0px 0px 0px 3px #5B63F059;
+  --lumen-shadow-focus: 0px 0px 0px 4px #6D4FEF66;
   --lumen-z-index-base: 0;
   --lumen-z-index-dropdown: 1000;
   --lumen-z-index-sticky: 1100;
@@ -183,7 +183,7 @@
   --lumen-typography-body-sm-letter-spacing: var(--lumen-font-letter-spacing-normal);
   --lumen-typography-label-lg: var(--lumen-font-weight-medium) var(--lumen-font-size-md)/var(--lumen-font-line-height-24) var(--lumen-font-family-sans);
   --lumen-typography-label-lg-letter-spacing: var(--lumen-font-letter-spacing-normal);
-  --lumen-typography-label-md: var(--lumen-font-weight-medium) var(--lumen-font-size-sm)/var(--lumen-font-line-height-20) var(--lumen-font-family-sans);
+  --lumen-typography-label-md: var(--lumen-font-weight-semibold) var(--lumen-font-size-sm)/var(--lumen-font-line-height-20) var(--lumen-font-family-sans);
   --lumen-typography-label-md-letter-spacing: var(--lumen-font-letter-spacing-normal);
   --lumen-typography-label-sm: var(--lumen-font-weight-medium) var(--lumen-font-size-xs)/var(--lumen-font-line-height-16) var(--lumen-font-family-sans);
   --lumen-typography-label-sm-letter-spacing: var(--lumen-font-letter-spacing-wide);
@@ -212,6 +212,8 @@
   --lumen-color-bg-brand-subtle: var(--lumen-color-brand-50);
   --lumen-color-bg-success-subtle: var(--lumen-color-green-50);
   --lumen-color-bg-warning-subtle: var(--lumen-color-amber-50);
+  --lumen-color-bg-warning: var(--lumen-color-amber-500);
+  --lumen-color-bg-warning-hover: var(--lumen-color-amber-600);
   --lumen-color-bg-danger: var(--lumen-color-red-600);
   --lumen-color-bg-danger-hover: var(--lumen-color-red-700);
   --lumen-color-bg-danger-subtle: var(--lumen-color-red-50);
@@ -222,6 +224,7 @@
   --lumen-color-text-disabled: var(--lumen-color-neutral-400);
   --lumen-color-text-inverse: var(--lumen-color-base-white);
   --lumen-color-text-on-brand: var(--lumen-color-base-white);
+  --lumen-color-text-on-warning: var(--lumen-color-neutral-950);
   --lumen-color-text-brand: var(--lumen-color-brand-600);
   --lumen-color-text-success: var(--lumen-color-green-700);
   --lumen-color-text-warning: var(--lumen-color-amber-700);
@@ -256,6 +259,8 @@
   --lumen-color-bg-brand-subtle: var(--lumen-color-brand-950);
   --lumen-color-bg-success-subtle: var(--lumen-color-green-950);
   --lumen-color-bg-warning-subtle: var(--lumen-color-amber-950);
+  --lumen-color-bg-warning: var(--lumen-color-amber-400);
+  --lumen-color-bg-warning-hover: var(--lumen-color-amber-500);
   --lumen-color-bg-danger: var(--lumen-color-red-600);
   --lumen-color-bg-danger-hover: var(--lumen-color-red-700);
   --lumen-color-bg-danger-subtle: var(--lumen-color-red-950);
@@ -266,6 +271,7 @@
   --lumen-color-text-disabled: var(--lumen-color-neutral-600);
   --lumen-color-text-inverse: var(--lumen-color-neutral-900);
   --lumen-color-text-on-brand: var(--lumen-color-base-white);
+  --lumen-color-text-on-warning: var(--lumen-color-neutral-950);
   --lumen-color-text-brand: var(--lumen-color-brand-300);
   --lumen-color-text-success: var(--lumen-color-green-300);
   --lumen-color-text-warning: var(--lumen-color-amber-300);
@@ -300,6 +306,8 @@
     --lumen-color-bg-brand-subtle: var(--lumen-color-brand-950);
     --lumen-color-bg-success-subtle: var(--lumen-color-green-950);
     --lumen-color-bg-warning-subtle: var(--lumen-color-amber-950);
+    --lumen-color-bg-warning: var(--lumen-color-amber-400);
+    --lumen-color-bg-warning-hover: var(--lumen-color-amber-500);
     --lumen-color-bg-danger: var(--lumen-color-red-600);
     --lumen-color-bg-danger-hover: var(--lumen-color-red-700);
     --lumen-color-bg-danger-subtle: var(--lumen-color-red-950);
@@ -310,6 +318,7 @@
     --lumen-color-text-disabled: var(--lumen-color-neutral-600);
     --lumen-color-text-inverse: var(--lumen-color-neutral-900);
     --lumen-color-text-on-brand: var(--lumen-color-base-white);
+    --lumen-color-text-on-warning: var(--lumen-color-neutral-950);
     --lumen-color-text-brand: var(--lumen-color-brand-300);
     --lumen-color-text-success: var(--lumen-color-green-300);
     --lumen-color-text-warning: var(--lumen-color-amber-300);

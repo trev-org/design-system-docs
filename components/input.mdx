@@ -62,6 +62,7 @@ Gaps: label to field `space.1-5` (6px), field to helper `space.1-5` (6px).
     <div><span className="lm-label-caption">Focus</span><div className="lm-input is-focus" style={{ width: "100%" }}><input defaultValue="Ada Lovelace" aria-label="Focus" /></div></div>
     <div><span className="lm-label-caption">Error</span><div className="lm-input is-error" style={{ width: "100%" }}><input defaultValue="ada@" aria-label="Error" aria-invalid="true" /></div><span className="lm-field-help is-error">Enter a valid email.</span></div>
     <div><span className="lm-label-caption">Disabled</span><div className="lm-input is-disabled" style={{ width: "100%" }}><input placeholder="Unavailable" aria-label="Disabled" disabled /></div></div>
+    <div><span className="lm-label-caption">Read-only</span><div className="lm-input is-readonly" style={{ width: "100%" }}><input defaultValue="ada@lumen.dev" aria-label="Read-only" readOnly /></div></div>
     <div><span className="lm-label-caption">With icon</span><div className="lm-input" style={{ width: "100%" }}><IconSearch /><input placeholder="Search…" aria-label="Search" /></div></div>
   </div>
 </div>
@@ -73,7 +74,7 @@ Gaps: label to field `space.1-5` (6px), field to helper `space.1-5` (6px).
 | Focus | `color.border.focus` | `shadow.focus` halo |
 | Error | `color.border.danger` | Helper text becomes `color.text.danger` and is prefixed with an icon |
 | Disabled | `color.border.default` | Fill `color.bg.subtle`, text `color.text.disabled` |
-| Read-only | `color.border.default` | Fill `color.bg.subtle`, text stays `color.text.primary`, still focusable |
+| Read-only | `color.border.default` | Fill `color.bg.subtle`, no shadow, text stays `color.text.primary`, still focusable |
 
 ## Props
 
@@ -180,5 +181,5 @@ import { SearchIcon } from "@lumen/icons";
 </Columns>
 
 <Info>
-  **Figma:** component set `Input` with properties `Size` (Sm, Md, Lg), `State` (Default, Hover, Focus, Error, Disabled), and booleans `Label`, `Helper text`, `Icon start`.
+  **Figma:** component set `Input` with properties `Size` (Sm, Md, Lg), `State` (Default, Hover, Focus, Error, Disabled, Read-only), and booleans `Label`, `Helper text`, `Icon start`.
 </Info>
