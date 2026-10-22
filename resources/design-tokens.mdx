@@ -5,7 +5,6 @@ icon: "braces"
 ---
 
 import { TokenInventoryChart } from "/snippets/token-inventory-chart.jsx";
-import { tokenStats } from "/snippets/generated/token-stats.mdx";
 
 Lumen's tokens follow the [W3C Design Tokens Community Group format](https://www.designtokens.org/tr/drafts/format/) (DTCG). Every token is an object with a `$value` and a `$type`, and optionally a `$description`.
 
@@ -39,16 +38,7 @@ Lumen's tokens follow the [W3C Design Tokens Community Group format](https://www
 
 The chart groups every Lumen token by foundation and is generated from the same source files as the tables throughout these docs.
 
-<TokenInventoryChart
-  total={tokenStats.total}
-  color={tokenStats.color}
-  typography={tokenStats.typography}
-  spacing={tokenStats.spacing}
-  effects={tokenStats.effects}
-  radiusAndBorder={tokenStats.radiusAndBorder}
-  motion={tokenStats.motion}
-  breakpoints={tokenStats.breakpoints}
-/>
+<TokenInventoryChart />
 
 <Note>
   This interactive visualization is rendered with [Recharts](https://recharts.org/) through Mintlify's third-party library support. Hover a segment to inspect its share of the system.

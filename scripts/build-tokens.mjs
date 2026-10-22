@@ -393,42 +393,9 @@ for (const group of Object.keys(sets["semantic/light"].color)) {
 // Token count summary
 {
   const count = shared.length + light.length;
-  const rootCount = (...roots) => shared.filter((t) => roots.includes(t.path[0])).length;
-  const categoryCounts = {
-    color: rootCount("color") + light.length,
-    typography: rootCount("font", "typography"),
-    spacing: rootCount("space"),
-    effects: rootCount("shadow", "z-index"),
-    radiusAndBorder: rootCount("radius", "border-width"),
-    motion: rootCount("duration", "easing"),
-    breakpoints: rootCount("breakpoint"),
-  };
-  const categories = [
-    { name: "Color", count: categoryCounts.color },
-    { name: "Typography", count: categoryCounts.typography },
-    { name: "Spacing", count: categoryCounts.spacing },
-    { name: "Effects", count: categoryCounts.effects },
-    { name: "Radius & border", count: categoryCounts.radiusAndBorder },
-    { name: "Motion", count: categoryCounts.motion },
-    { name: "Breakpoints", count: categoryCounts.breakpoints },
-  ];
-  if (categories.reduce((sum, category) => sum + category.count, 0) !== count)
-    throw new Error("Token inventory categories do not add up to the total token count");
-
   snippets["token-stats.mdx"] =
     GEN_NOTE +
-    `export const tokenStats = ${JSON.stringify(
-      {
-        total: count,
-        primitives: rootCount("color"),
-        semantic: light.length,
-        typeStyles: typeStyles.length,
-        ...categoryCounts,
-        categories,
-      },
-      null,
-      2
-    )};\n`;
+    `export const tokenStats = { total: ${count}, primitives: ${shared.filter((t) => t.path[0] === "color").length}, semantic: ${light.length}, typeStyles: ${typeStyles.length} };\n`;
 }
 
 // ---------------------------------------------------------------------------
