@@ -393,9 +393,32 @@ for (const group of Object.keys(sets["semantic/light"].color)) {
 // Token count summary
 {
   const count = shared.length + light.length;
+  const rootCount = (...roots) => shared.filter((t) => roots.includes(t.path[0])).length;
+  const categories = [
+    { name: "Color", count: rootCount("color") + light.length },
+    { name: "Typography", count: rootCount("font", "typography") },
+    { name: "Spacing", count: rootCount("space") },
+    { name: "Effects", count: rootCount("shadow", "z-index") },
+    { name: "Radius & border", count: rootCount("radius", "border-width") },
+    { name: "Motion", count: rootCount("duration", "easing") },
+    { name: "Breakpoints", count: rootCount("breakpoint") },
+  ];
+  if (categories.reduce((sum, category) => sum + category.count, 0) !== count)
+    throw new Error("Token inventory categories do not add up to the total token count");
+
   snippets["token-stats.mdx"] =
     GEN_NOTE +
-    `export const tokenStats = { total: ${count}, primitives: ${shared.filter((t) => t.path[0] === "color").length}, semantic: ${light.length}, typeStyles: ${typeStyles.length} };\n`;
+    `export const tokenStats = ${JSON.stringify(
+      {
+        total: count,
+        primitives: rootCount("color"),
+        semantic: light.length,
+        typeStyles: typeStyles.length,
+        categories,
+      },
+      null,
+      2
+    )};\n`;
 }
 
 // ---------------------------------------------------------------------------
